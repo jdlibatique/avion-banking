@@ -1,34 +1,25 @@
-import React from 'react'
-import Homepage from './Pages/Homepage/Homepage';
-import Deposit from './Pages/Deposit/Deposit';
-import Withdraw from './Pages/Withdraw/Withdraw';
-import Transfer from './Pages/Transfer/Transfer';
-import Confirmation from './Pages/Confirmation/Confirmation';
-import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
-import LoginForm from "./components/LoginForm";
-import {useAuthContext} from "./hooks/useAuthContext";
-import './App.css'
-
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-    const {user, authIsReady} = useAuthContext();
-    
-    return (
-        <div>
-            {authIsReady && (
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={!user ? <LoginForm /> : <Navigate to="/Homepage" />}/>
-                        <Route path='/Homepage' element={user ? <Homepage /> : <Navigate to="/" />}/>
-                        <Route path='/Deposit' element={user ? <Deposit/> : <Navigate to="/" />}/>
-                        <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>
-                        <Route path='/Transfer' element={user ? <Transfer/> : <Navigate to="/" />}/>
-                        <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
-                    </Routes>
-                </BrowserRouter>
-            )}
-        </div>
-    );
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
