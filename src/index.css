@@ -95,7 +95,7 @@ form .form-inner input[type="submit"], .welcome button {
     padding: 10px 15px;
     border-radius: 8px;
     background-image: linear-gradient(to right, rgb(114, 92, 92) 50%, rgb(114, 91, 91), black
-    , black);
+    , rgb(101, 99, 99));
     background-size: 200%;
     background-position: 0%;
     transition: .4s;
@@ -104,7 +104,7 @@ form .form-inner input[type="submit"], .welcome button {
     cursor: pointer;
 }
 
-form .form-inner input[type="submit"]:hover .welcome button {
+form .form-inner input[type="submit"]:hover {
     background-position: 100% 0%;
 }
 
