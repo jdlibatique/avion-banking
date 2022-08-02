@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import {useLogin} from "../hooks/useLogin";
+import {useNavigate} from "react-router-dom";
 
-function LoginForm({}) {
+function LoginForm() {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {error, login} = useLogin();
+    
+    let navigate = useNavigate();
     
     const submitHandler = e => {
         e.preventDefault();
@@ -16,16 +19,15 @@ function LoginForm({}) {
         <form onSubmit={submitHandler}>
             <div className='form-inner'>
                 <h2>Bankplication</h2>
-                {/*{(error != "") ? (<div className='error'>{error}</div>) : ""}*/}
                 <div className="form-group">
                     <label htmlFor="email">Username:</label>
-                    <input type="text" name='username' id='username' onChange={e => setEmail(e.target.value)}/>
+                    <input type="text" name='username' id='username' onChange={e => setEmail(e.target.value)} value={email} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)} value={password} required/>
                 </div>
-                <input type="submit"/>
+                <button>Login</button>
             </div>
         </form>
     )

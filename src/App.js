@@ -1,5 +1,6 @@
 import React, { useState }from 'react'
 import LoginForm from './components/LoginForm';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() { 
 
@@ -31,6 +32,11 @@ function App() {
 
   return (
     <div className="App">
+        <BrowserRouter>
+            <Routes>
+                <Route exact path={"/"} element={<LoginForm/>}></Route>
+            </Routes>
+        </BrowserRouter>
       {/*{(user.password != "") ? (*/}
       {/*  <div className="welcome">*/}
       {/*    <h2>Welcome, &nbsp; <span>User!</span></h2>*/}
@@ -40,7 +46,6 @@ function App() {
       {/*  <LoginForm Login={Login} error={error}/>*/}
       {/*  */}
       {/*)}*/}
-      <LoginForm/>
     </div>
   );
 }
