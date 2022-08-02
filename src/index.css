@@ -1,13 +1,124 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button, input {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.App {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #161853;
+}
+
+.form-inner {
+    border-radius: 10px;
+}
+
+form {
+    display: block;
+    position: relative;
+}
+
+form:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: 1;
+    /* background-image: linear-gradient(to bottom right, #ffce00, #fe4880); */
+}
+
+form .form-inner {
+    position: relative;
+    display: block;
+    background-color: #FF2D65;
+    padding: 30px;
+    z-index: 2;
+}
+
+form .form-inner h2 {
+    color: white; 
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+form .form-inner .form-group {
+    display: block;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.form-inner .form-group label {
+    display: block;
+    color: #ffff;
+    margin-bottom: 5px;
+    transition: .4s;
+}
+
+.welcome {
+    color: white;
+}
+
+.form-inner .form-group:focus-within label {
+    color: #161853;
+}
+
+form .form-inner .form-group input {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    transition: .4s;
+}
+
+form .form-inner .form-group input:focus {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, .2);
+}
+
+form .form-inner input[type="submit"], .welcome button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, rgb(114, 92, 92) 50%, rgb(114, 91, 91), black
+    , rgb(101, 99, 99));
+    background-size: 200%;
+    background-position: 0%;
+    transition: .4s;
+    color: #ffff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+form .form-inner input[type="submit"]:hover {
+    background-position: 100% 0%;
+}
+
+.welcome h2, .welcome h2 span {
+    color: white;
+    font-size: 30px;
+}
+
+.welcome button {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.welcome h2, .welcome h2 span, .welcome button{
+    display: flex;
+    justify-content: flex-start;
 }

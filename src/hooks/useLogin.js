@@ -12,7 +12,6 @@ export const useLogin = () => {
         setError(null);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log("Logged in with", userCredential.user.email)
                 dispatch({type: 'LOGIN', payload: userCredential.user})
         }).catch((error) => {
             setError(error.message);
