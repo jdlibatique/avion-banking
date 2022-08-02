@@ -1,13 +1,17 @@
 import React, { useState} from 'react'
+import {useLogin} from "../hooks/useLogin";
 
-function LoginForm({ Login, error}) {
+function LoginForm({}) {
 
     const [details, setDetails] = useState({email: "", password: ""});
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { error, login } = useLogin();
 
     const submitHandler = e => {
         e.preventDefault();
-
-        Login(details);
+        
+        login(email, password)
     }
     
   return (
@@ -21,11 +25,11 @@ function LoginForm({ Login, error}) {
             </div>
             <div className="form-group">
                 <label htmlFor="email">Username:</label>
-                <input type="text" name='username' id='username' onChange={e => setDetails({...details, username: e.target.value})} value={details.username}/>
+                <input type="text" name='username' id='username' onChange={e => setEmail(e.target.value)}/>
             </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name='password' id='password' onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
+                    <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <input type="submit" value="LOGIN"/>
         </div>
