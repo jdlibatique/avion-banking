@@ -78,12 +78,12 @@ form .form-inner .form-group {
 }
 
 form .form-inner .form-group input {
-    width: block;
+    display: block;
     width: 100%;
     padding: 10px 15px;
     background-color: #fff;
     border-radius: 8px;
-    transform: .4s;
+    transition: .4s;
 }
 
 form .form-inner .form-group input:focus {
