@@ -1,33 +1,13 @@
-import React, { useState } from 'react'
-import LoginForm from './components/LoginForm';
+import React from 'react'
+import Homepage from './Pages/Homepage/Homepage';
+import Deposit from './Pages/Deposit/Deposit';
+import Withdraw from './Pages/Withdraw/Withdraw';
+import Transfer from './Pages/Transfer/Transfer';
+import Confirmation from './Pages/Confirmation/Confirmation';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 function App() { 
-
-  const adminUser = {
-    username: "admin",
-    password: "admin123"
-  } 
-
-  const [user, setUser] = useState({username: "", password: ""});
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details)
-    if(details.username == adminUser.username && details.password == adminUser.password) {
-      console.log("Logged In");
-      setUser({
-        username: details.username,
-        password: details.password
-      })
-    } else if (details.username != adminUser.username && details.password != adminUser.password) {
-      setError("Username or Password do not match!")
-    }
-}
-
-  const Logout = () => {
-    console.log("Logout");
-    setUser({username: "", password: ""});
-  }
 
   return (
     <div className="App">
@@ -40,8 +20,21 @@ function App() {
         <LoginForm Login={Login} error={error}/>
         
       )}
+    <div>
+       
+      <Router>
+        <Routes>
+          <Route path='/Homepage' element={<Homepage/>}/> 
+          <Route path='/Deposit' element={<Deposit/>}/>
+          <Route path='/Withdraw' element={<Withdraw/>}/>
+          <Route path='/Transfer' element={<Transfer/>}/>
+          <Route path='/Confirmation' element={<Confirmation/>}/>
+        </Routes>
+     </Router>
+     
+     </div>
     </div>
   );
 }
 
-export default App;
+export default App; 
