@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+body {
+  background-color: #161853;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.container {
   color: white;
+  background-color: 
+  #FF2D65;
+  width: 25%;
+  height: 300px;
+  padding: 30px;
+  position: absolute;
+  top: 25%;
+  left: 34%;
+  border-radius: 3px;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  background-color: 
+  #292C6D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56%;
+  padding: 20px;
+  margin-left: 75px;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  border-radius: 3px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.username {
+  text-align: center;
+  width: 63%;
+  margin-left: 75px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  padding: 6px;
+  margin-bottom: 5px;
 }
+
+.password {
+  text-align: center;
+  width: 63%;
+  margin-left: 75px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  padding: 6px;
+}
+
+.login-button {
+  background-color: 
+  #292C6D;
+  color: white;
+  width: 66%;
+  text-align: center;
+  margin-left: 75px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
