@@ -1,10 +1,15 @@
 import React from 'react'
 import './Deposit.css'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
 
 function Deposit() {
 
   const navigate = useNavigate();
+
+  const [openConfirmation, setOpenConfirmation] = useState(false);
+
 
   return (
     <div className='withdraw-container'>
@@ -16,10 +21,11 @@ function Deposit() {
             </div>
         </div>
         <div className='deposit-body'>
-            <button className='button-account'>Account #</button>
-            <button className='button-amount'>Amount</button>
-            <button className='button-deposit'>Deposit</button>
+            <input className='button-account' type="text" name="name" placeholder="Account #"></input>
+            <input className='button-amount'  type="text" name="name" placeholder="Amount"></input>
+            <button className="button-deposit" onClick={() => {setOpenConfirmation(true)}}>Deposit</button>
         </div>
+        {openConfirmation && <ConfirmationOpen closeConfirmation={setOpenConfirmation}/>}
     </div>
   )
 }

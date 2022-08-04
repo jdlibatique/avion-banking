@@ -9,11 +9,11 @@ body {
 .head-container {
     display: flex;
     justify-content: space-between;
-    background-color: #232931;
+    background-color: #06113C;
 }
 
 .head-container span {
-    color: white;
+    color: #ffff;
     font-size: 25px;
     margin-left: 20px;
     margin-top: 10px;
@@ -24,20 +24,31 @@ body {
     margin-right: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    color: black;
     border-radius: 5px;
     padding: 4px 18px;
     font-size: 15px;
 }
 
-.home-out button:hover {
-    transform: scale(1.05);
-    transition: .3s ease;
-}
-
 
 .button-home {
-    background-color: #4ECCA3;
+    background-color: #FF8C32;
+    box-shadow: 1px 3px #888888;
+}
+
+.button-home:hover {
+    transform: scale(1.03);
+    transition: .3s ease;
+    color: white;
+}
+
+.button-logout {
+    background-color: #EEEEEE;
+    box-shadow: 1px 3px #888888;
+}
+
+.button-logout:hover {
+    transform: scale(1.03);
+    transition: .3s ease;
 }
 
 .home-body {
@@ -46,6 +57,24 @@ body {
     grid-template-rows: 2fr 1fr 1fr;
     height: 500px;  
     margin: 0px 30px 30px 30px;
+}
+
+.home-body button {
+    background-color: #FF8C32;
+    width: 150px;
+    height: 75px;
+    margin-top: 0px;
+    border-radius: 5px;
+    font-size: 20px;
+    align-self: start;
+    box-shadow: 4px 5px #888888;
+}
+
+.home-body button:hover {
+    color: white;
+    transform: scale(1.03);
+    transform: .8s ease;
+    box-shadow: 4px 5px #EEEEEE;
 }
 
 .hello-user {
@@ -65,7 +94,7 @@ body {
     margin-right: 50px;
     justify-self: end;
     align-self: center;
-    background-color: #D9D9D9;
+    background-color: #EEEEEE;
     width: 600px;
     height: 100px;
     border-radius: 5px;
@@ -78,23 +107,8 @@ body {
     grid-row-end: 4;
     justify-self: center;
     align-self: flex-start;
-    background-color: #D9D9D9;
+    background-color: #EEEEEE;
     width: 299px;
     height: 225px;
     border-radius: 5px;
-}
-
-.home-body button {
-    background-color: #4ECCA3;
-    width: 150px;
-    height: 75px;
-    margin-top: 0px;
-    border-radius: 5px;
-    font-size: 20px;
-    align-self: start;
-}
-
-.home-body button:hover {
-    transform: scale(1.05);
-    transition: .3s ease;
 }
