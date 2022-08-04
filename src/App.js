@@ -7,6 +7,7 @@ import Confirmation from './Pages/Confirmation/Confirmation';
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import LoginForm from "./components/LoginForm";
 import {useAuthContext} from "./hooks/useAuthContext";
+import './App.css'
 
 
 function App() {
