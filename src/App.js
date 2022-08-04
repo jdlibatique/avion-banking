@@ -4,24 +4,30 @@ import Deposit from './Pages/Deposit/Deposit';
 import Withdraw from './Pages/Withdraw/Withdraw';
 import Transfer from './Pages/Transfer/Transfer';
 import Confirmation from './Pages/Confirmation/Confirmation';
-import {BrowserRouter as Router, Routes, Route, BrowserRouter} from 'react-router-dom'
+import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import LoginForm from "./components/LoginForm";
+import {useAuthContext} from "./hooks/useAuthContext";
 
 
-function App() { 
-
-  return (
-      <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<LoginForm/>}/>
-            <Route path='/Homepage' element={<Homepage/>}/>
-            <Route path='/Deposit' element={<Deposit/>}/>
-            <Route path='/Withdraw' element={<Withdraw/>}/>
-            <Route path='/Transfer' element={<Transfer/>}/>
-            <Route path='/Confirmation' element={<Confirmation/>}/>
-          </Routes>
-      </BrowserRouter>
-  );
+function App() {
+    const {user, authIsReady} = useAuthContext();
+    
+    return (
+        <div>
+            {authIsReady && (
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={!user ? <LoginForm /> : <Navigate to="/Homepage" />}/>
+                        <Route path='/Homepage' element={user ? <Homepage /> : <Navigate to="/" />}/>
+                        <Route path='/Deposit' element={user ? <Deposit/> : <Navigate to="/" />}/>
+                        <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>
+                        <Route path='/Transfer' element={user ? <Transfer/> : <Navigate to="/" />}/>
+                        <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
+                    </Routes>
+                </BrowserRouter>
+            )}
+        </div>
+    );
 }
 
-export default App; 
+export default App;

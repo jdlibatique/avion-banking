@@ -11,9 +11,11 @@ export const useLogout = () => {
     const logout = () => {
         signOut(auth).then(() => {
             dispatch({type: 'LOGOUT'});
-            navigate("/");
+            // navigate("/");
         }).catch((error) => {
             console.log(error.message);
         })
     }
+    
+    return {logout};
 }
