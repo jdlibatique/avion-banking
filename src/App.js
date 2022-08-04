@@ -1,48 +1,33 @@
-import React, { useState }from 'react'
-import LoginForm from './components/LoginForm';
+import React from 'react'
+import Homepage from './Pages/Homepage/Homepage';
+import Deposit from './Pages/Deposit/Deposit';
+import Withdraw from './Pages/Withdraw/Withdraw';
+import Transfer from './Pages/Transfer/Transfer';
+import Confirmation from './Pages/Confirmation/Confirmation';
+import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
+import LoginForm from "./components/LoginForm";
+import {useAuthContext} from "./hooks/useAuthContext";
 
-function App() { 
 
-//   const adminUser = {
-//     username: "admin",
-//     password: "admin123"
-//   }
-//
-//   const [user, setUser] = useState({username: "", password: ""});
-//   const [error, setError] = useState("");
-//
-//   const Login = details => {
-//     console.log(details)
-//     if(details.username == adminUser.username && details.password == adminUser.password) {
-//       console.log("Logged In");
-//       setUser({
-//         username: details.username,
-//         password: details.password
-//       })
-//     } else if (details.username != adminUser.username && details.password != adminUser.password) {
-//       setError("Username or Password do not match!")
-//     }
-// }
-//
-//   const Logout = () => {
-//     console.log("Logout");
-//     setUser({username: "", password: ""});
-//   }
-
-  return (
-    <div className="App">
-      {/*{(user.password != "") ? (*/}
-      {/*  <div className="welcome">*/}
-      {/*    <h2>Welcome, &nbsp; <span>User!</span></h2>*/}
-      {/*    <button onClick={Logout}>Logout</button>*/}
-      {/*  </div>*/}
-      {/*) : (*/}
-      {/*  <LoginForm Login={Login} error={error}/>*/}
-      {/*  */}
-      {/*)}*/}
-      <LoginForm/>
-    </div>
-  );
+function App() {
+    const {user, authIsReady} = useAuthContext();
+    
+    return (
+        <div>
+            {authIsReady && (
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={!user ? <LoginForm /> : <Navigate to="/Homepage" />}/>
+                        <Route path='/Homepage' element={user ? <Homepage /> : <Navigate to="/" />}/>
+                        <Route path='/Deposit' element={user ? <Deposit/> : <Navigate to="/" />}/>
+                        <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>
+                        <Route path='/Transfer' element={user ? <Transfer/> : <Navigate to="/" />}/>
+                        <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
+                    </Routes>
+                </BrowserRouter>
+            )}
+        </div>
+    );
 }
 
 export default App;
