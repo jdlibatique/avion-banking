@@ -39,6 +39,7 @@
     font-size: 15px;
     margin: 10px;
     width: 100px;
+    cursor: pointer;
 }
 
 .confirm-items button:hover {
