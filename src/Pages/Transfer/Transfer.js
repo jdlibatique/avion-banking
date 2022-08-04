@@ -1,10 +1,14 @@
 import React from 'react'
 import './Transfer.css'
 import { useNavigate } from 'react-router-dom'
+import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
+import { useState } from 'react'
 
 function Transfer() {
 
   const navigate = useNavigate();
+
+  const [openConfirmation, setOpenConfirmation] = useState(false);
 
   return (
     <div className='withdraw-container'>
@@ -15,12 +19,13 @@ function Transfer() {
                 <button className='button-logout'>Logout</button>
             </div>
         </div>
-        <div className='deposit-body'>
-            <button className='button-account'>Account #</button>
-            <button className='button-target'>Target Account</button>
-            <button className='button-amount'>Amount</button>
-            <button className='button-transfer'>Transfer</button>
+        <div className='transfer-body'>
+            <input className='button-account' type="text" name="name" placeholder="Account #"></input>
+            <input className='button-amount'  type="text" name="name" placeholder="Target Account"></input>
+            <input className='button-amount'  type="text" name="name" placeholder="Amount"></input>
+            <button className="button-transfer" onClick={() => {setOpenConfirmation(true)}}>Transfer</button>
         </div>
+        { openConfirmation && <ConfirmationOpen closeConfirmation={setOpenConfirmation}/>}
     </div>
   )
 }
