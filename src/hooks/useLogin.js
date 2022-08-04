@@ -2,6 +2,8 @@ import {useState} from "react";
 import {auth} from "../firebase/config"
 import {signInWithEmailAndPassword} from "@firebase/auth";
 import {useAuthContext} from "./useAuthContext";
+import Swal from "sweetalert2";
+
 
 export const useLogin = () => {
     
@@ -15,7 +17,7 @@ export const useLogin = () => {
                 dispatch({type: 'LOGIN', payload: userCredential.user})
         }).catch((error) => {
             setError(error.message);
-            console.log(error);
+            Swal.fire(`Oops!`, `Invalid Email or Password`, error);
         })
     }
     return { error, login };

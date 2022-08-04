@@ -7,6 +7,7 @@ import Confirmation from './Pages/Confirmation/Confirmation';
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import LoginForm from "./components/LoginForm";
 import {useAuthContext} from "./hooks/useAuthContext";
+import SignupForm from "./components/SignupForm";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path='/' element={!user ? <LoginForm /> : <Navigate to="/Homepage" />}/>
+                        <Route path='/Signup' element={!user ? <SignupForm /> : <Navigate to="/Homepage" />}/>
                         <Route path='/Homepage' element={user ? <Homepage /> : <Navigate to="/" />}/>
                         <Route path='/Deposit' element={user ? <Deposit/> : <Navigate to="/" />}/>
                         <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>

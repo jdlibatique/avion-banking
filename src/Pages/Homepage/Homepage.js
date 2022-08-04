@@ -31,7 +31,7 @@ export default function Homepage() {
             <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer</button>
             <button className='search' onClick={() => navigate('/SearchAccount')}>Seach Account</button>
             <button className='view'>View Details</button>
-            <button className='manage'>Manage Accounts</button>
+            <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts</button>
         </section>
     </div>
   )

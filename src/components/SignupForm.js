@@ -4,16 +4,16 @@ import {useSignup} from "../hooks/useSignup";
 import {useNavigate} from "react-router-dom";
 
 
-function LoginForm({}) {
+function SignupForm({}) {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {error, login} = useLogin();
+    const {error, signup} = useSignup();
     const navigate = useNavigate();
     
     const submitHandler = e => {
         e.preventDefault();
-        login(email, password)
+        signup(email, password);
     }
     
     return (
@@ -31,12 +31,12 @@ function LoginForm({}) {
                         <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)}/>
                     </div>
                     <button type="submit">Login</button>
-                    <button onClick={() => navigate("/Signup")}>Sign Up</button>
+                    <button onClick={() => navigate("/SignupForm")}>Sign Up</button>
                 </div>
             </form>
         </>
-
+    
     )
 }
 
-export default LoginForm
+export default SignupForm
