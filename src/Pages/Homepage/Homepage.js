@@ -2,11 +2,13 @@ import React from 'react'
 import './Homepage.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import {useLogout} from "../../hooks/useLogout";
 
 
 export default function Homepage() {
 
   const navigate = useNavigate();
+  const { logout } = useLogout();
 
   const [user, setUser] = useState("Evan");
 
@@ -17,7 +19,7 @@ export default function Homepage() {
             <span>Avion Bank <i class="fa-solid fa-sack-dollar"></i></span>
             <div className='home-out'>
                 <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                <button className='button-logout'>Logout</button>
+                <button className='button-logout' onClick={logout}>Logout</button>
             </div>
         </div>
         <section className='home-body'>
