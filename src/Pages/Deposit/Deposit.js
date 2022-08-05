@@ -18,39 +18,39 @@ function Deposit() {
     const updateAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
         let currentBalance = 0;
+        let nextBalance = 0;
         console.log(amount, typeof amount)
     
         const getCurrentBalance = async (docRef) => {
-            // const docSnap = await getDoc(docRef).then((doc) => {
-            //     console.log(doc.data().balance);
-            // }).catch((error) => {
-            //     Swal.fire(error.message)
-            // })
-        
-            const docSnap = await getDoc(docRef);
-            // console.log(docSnap.data())
-            // console.log(docSnap.data().balance)
-            console.log("docsnap: ", docSnap.data())
-            console.log("docSnap balance: ", docSnap.data().balance)
+
+            const docSnap = await getDoc(docRef).catch(error =>{
+                Swal.fire(error.message)
+            });
+            
+            if (!docSnap.exists()) {
+                Swal.fire("Oops!", "Account does not exist", `error`)
+                return;
+            }
+
+            // console.log("docSnap: ", docSnap.data())
+            // console.log("docSnap balance: ", docSnap.data().balance)
             return docSnap.data().balance;
         }
     
         currentBalance = await getCurrentBalance(docRef);
-    
+        
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
-        let nextBalance = parseInt(currentBalance) + parseInt(amount)
+        nextBalance = parseInt(currentBalance) + parseInt(amount)
         console.log();
     
         updateDoc(docRef, {
             balance: nextBalance
         })
             .then(() => {
-                Swal.fire(`Deposited to Account #${accountNumber}`, `Deposited ${amount}`, `success`)
+                Swal.fire(`Deposited to Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log()
             })
     }
-    
-    
     return (
         <div className='withdraw-container'>
             <div className='head-container'>
