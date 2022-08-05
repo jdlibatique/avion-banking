@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import {useAuthContext} from "./hooks/useAuthContext";
 import SignupForm from "./components/SignupForm";
 import ManageAccount from "./Pages/ManageAccounts/ManageAccount";
+import SearchAccount from "./Pages/SearchAccount/SearchAccount";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                         <Route path='/Transfer' element={user ? <Transfer/> : <Navigate to="/" />}/>
                         <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
                         <Route path='/ManageAccount' element={user ? <ManageAccount/> : <Navigate to="/" />}/>
+                        <Route path='/SearchAccount' element={user ? <SearchAccount/> : <Navigate to="/" />}/>
                     </Routes>
                 </BrowserRouter>
             )}
