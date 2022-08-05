@@ -6,6 +6,7 @@ import {useState} from 'react'
 import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase/config";
 import Swal from "sweetalert2";
+import {useLogout} from "../../hooks/useLogout";
 
 function Transfer() {
     
@@ -13,6 +14,7 @@ function Transfer() {
     const [accountNumber1, setAccountNumber1] = useState('');
     const [accountNumber2, setAccountNumber2] = useState('');
     const [amount, setAmount] = useState('');
+    const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     
@@ -97,7 +99,7 @@ function Transfer() {
                 <span>Avion Bank</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout'>Logout</button>
+                    <button className='button-logout' onClick={logout}>Logout</button>
                 </div>
             </div>
             <div className='transfer-body'>
