@@ -42,7 +42,7 @@ body {
 }
 
 .form-inner .form-group input{
-    border: none;
+    border: 1px solid #888888;
     outline: none;
     padding: 5px;
     border-radius: 5px;
@@ -60,11 +60,11 @@ body {
     height: 30px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 3px 3px #888888;
 }
 
 .form-inner button:hover {
-    background-color: 
-    #161853;
+    background-color:#161853;
     color: white;
 }
 /* * {
