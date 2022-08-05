@@ -13,7 +13,7 @@ export default function Homepage() {
   const loggedInUser = auth.currentUser.email;
 
   const [user, setUser] = useState("USER");
-
+  
 
   return (
     <div className='home-container'>

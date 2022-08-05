@@ -84,9 +84,12 @@ body {
     justify-self: center;
     align-self: center;
     color: #D9D9D9;
-    width: 300px;
-    height: 100px;
+    min-width: 300px;
+    /*height: 100px;*/
+    padding: 1rem;
     font-size: 40px;
+    background-color: #06113C;
+    border-radius: 0.5rem;
 }
 
 .first-blank {
