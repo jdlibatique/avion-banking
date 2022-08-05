@@ -17,7 +17,7 @@ export const useLogin = () => {
                 dispatch({type: 'LOGIN', payload: userCredential.user})
         }).catch((error) => {
             setError(error.message);
-            Swal.fire(`Oops!`, `Invalid Email or Password`, error);
+            Swal.fire(`Oops!`, `Invalid Email or Password`, `error`);
         })
     }
     return { error, login };

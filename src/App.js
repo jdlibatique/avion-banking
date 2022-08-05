@@ -8,6 +8,7 @@ import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import LoginForm from "./components/LoginForm";
 import {useAuthContext} from "./hooks/useAuthContext";
 import SignupForm from "./components/SignupForm";
+import ManageAccount from "./Pages/ManageAccounts/ManageAccount";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                         <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>
                         <Route path='/Transfer' element={user ? <Transfer/> : <Navigate to="/" />}/>
                         <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
+                        <Route path='/ManageAccount' element={user ? <ManageAccount/> : <Navigate to="/" />}/>
                     </Routes>
                 </BrowserRouter>
             )}
