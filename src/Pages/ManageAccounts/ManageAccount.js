@@ -14,6 +14,9 @@ function ManageAccount() {
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     const [accounts, setAccounts] = useState(null);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [balance, setBalance] = useState("");
     
     useEffect(() => {
         const ref = collection(db, 'accounts');
@@ -54,8 +57,6 @@ function ManageAccount() {
                     <input className='button-account' type="text" name="name" placeholder="Account #"></input>
                     <input className='button-amount'  type="text" name="name" placeholder="First Name"></input>
                     <input className='button-amount'  type="text" name="name" placeholder="Last Name"></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="Email Address"></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="Telephone Number"></input>
                     <button className="button-create-user" type={'submit'}>Create User</button>
                 </form>
             <div>
