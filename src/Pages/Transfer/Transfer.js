@@ -2,17 +2,17 @@ import React from 'react'
 import './Transfer.css'
 import {useNavigate} from 'react-router-dom'
 import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
-import { useState } from 'react'
-import {useLogout} from "../../hooks/useLogout";
+import {useState} from 'react'
+import {doc, getDoc, updateDoc} from "@firebase/firestore";
+import {db} from "../../firebase/config";
+import Swal from "sweetalert2";
 
-  
 function Transfer() {
     
     const navigate = useNavigate();
     const [accountNumber1, setAccountNumber1] = useState('');
     const [accountNumber2, setAccountNumber2] = useState('');
     const [amount, setAmount] = useState('');
-    const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     
@@ -23,31 +23,32 @@ function Transfer() {
         console.log(amount, typeof amount)
         
         const getCurrentBalance = async (docRef) => {
-            
             const docSnap = await getDoc(docRef).catch(error => {
                 Swal.fire(error.message)
             });
-            
             if (!docSnap.exists()) {
-                Swal.fire("Oops!", "Account does not exist", `error`)
+                Swal.fire("Oops!", "Account does not exist!", `error`)
                 return;
             }
-            
             return docSnap.data().balance;
         }
         
         currentBalance = await getCurrentBalance(docRef);
         
+        if (isNaN(currentBalance)) {
+            Swal.fire("Oops!", "Sender does not exist!", "error")
+            return;
+        }
+        
+        
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         if (isNaN(parseInt(amount)) || parseInt(amount) <= 0) {
             Swal.fire("Oops!", "Please enter a valid value!", "error")
             return;
-        }
-        else if (accountNumber1 === accountNumber2) {
+        } else if (accountNumber1 === accountNumber2) {
             Swal.fire("Oops!", "Can't transfer to the same account!", "error")
             return;
-        }
-        else if (parseInt(currentBalance) < parseInt(amount)) {
+        } else if (parseInt(currentBalance) < parseInt(amount)) {
             Swal.fire("Oops!", "Account does not have enough funds!", "error")
             return;
         }
@@ -64,18 +65,23 @@ function Transfer() {
                 // Swal.fire(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
             })
-    
+        
         const docRef2 = doc(db, 'accounts', accountNumber2);
         currentBalance = 0;
         nextBalance = 0;
         console.log(amount, typeof amount)
-    
+        
         currentBalance = await getCurrentBalance(docRef2);
     
+        if (isNaN(currentBalance)) {
+            Swal.fire("Oops!", "Receiver does not exist!", "error")
+            return;
+        }
+        
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
         console.log();
-    
+        
         updateDoc(docRef2, {
             balance: nextBalance
         })
@@ -91,7 +97,7 @@ function Transfer() {
                 <span>Avion Bank</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout' onClick={logout}>Logout</button>
+                    <button className='button-logout'>Logout</button>
                 </div>
             </div>
             <div className='transfer-body'>
