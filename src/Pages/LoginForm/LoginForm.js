@@ -26,7 +26,7 @@ function LoginForm({}) {
         <>
             <form onSubmit={submitHandler}>
                 <div className='form-inner'>
-                    <h2>Avion Bank <i class="fa-solid fa-sack-dollar"></i></h2>
+                    <h2>Avion Bank <i class="fa-solid fa-sack-dollar"></i> </h2>
                     {/*{(error != "") ? (<div className='error'>{error}</div>) : ""}*/}
                     <div className="form-group">
                         <label htmlFor="email">Username:</label>
