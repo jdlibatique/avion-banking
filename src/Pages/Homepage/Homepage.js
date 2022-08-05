@@ -12,7 +12,7 @@ export default function Homepage() {
   const { logout } = useLogout();
   const loggedInUser = auth.currentUser.email;
 
-  const [user, setUser] = useState("USER");
+ 
 
   return (
     <div className='home-container'>
@@ -28,11 +28,11 @@ export default function Homepage() {
             <div className='first-blank'></div>
             <div className='second-blank'></div>
             <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit <br/> <i class="fa-brands fa-dropbox"></i></button>
-            <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw</button>
+            <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw <br/> <i class="fa-solid fa-hand-holding-dollar"></i></button>
             <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer <br/><i class="fa-solid fa-money-bill-transfer"></i></button>
-            <button className='search' onClick={() => navigate('/SearchAccount')}>Search Account <i class="fa-solid fa-person-circle-check"></i></button>
-            <button className='view'>View Details <br/> <i class="fa-solid fa-memo-circle-info"></i></button>
-            <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts</button>
+            <button className='search' onClick={() => navigate('/SearchAccount')}>Search Account<i class="fa-solid fa-person-circle-check"></i></button>
+            <button className='view'>View Details <br/> <i class="fa-solid fa-circle-info"></i></button>
+            <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts <br/> <i class="fa-solid fa-list-check"></i></button>
         </section>
     </div>
   )
