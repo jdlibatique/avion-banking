@@ -33,6 +33,7 @@ body {
 .button-home {
     background-color: #FF8C32;
     box-shadow: 1px 3px #888888;
+    cursor: pointer;
 }
 
 .button-home:hover {
@@ -44,6 +45,7 @@ body {
 .button-logout {
     background-color: #EEEEEE;
     box-shadow: 1px 3px #888888;
+    cursor: pointer;
 }
 
 .button-logout:hover {
@@ -68,6 +70,7 @@ body {
     font-size: 20px;
     align-self: start;
     box-shadow: 4px 5px #888888;
+    cursor: pointer;
 }
 
 .home-body button:hover {

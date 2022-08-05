@@ -29,7 +29,7 @@ export default function Homepage() {
             <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit</button>
             <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw</button>
             <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer</button>
-            <button className='search' onClick={() => navigate('/SearchAccount')}>Seach Account</button>
+            <button className='search' onClick={() => navigate('/SearchAccount')}>Search Account</button>
             <button className='view'>View Details</button>
             <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts</button>
         </section>
