@@ -3,14 +3,16 @@ import './Homepage.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import {useLogout} from "../../hooks/useLogout";
+import {auth} from "../../firebase/config";
 
 
 export default function Homepage() {
 
   const navigate = useNavigate();
   const { logout } = useLogout();
+  const loggedInUser = auth.currentUser.email;
 
-  const [user, setUser] = useState("Evan");
+  const [user, setUser] = useState("USER");
 
 
   return (
@@ -23,7 +25,7 @@ export default function Homepage() {
             </div>
         </div>
         <section className='home-body'>
-            <div className='hello-user'>Hello, {user}! </div>
+            <div className='hello-user'>Hello, {loggedInUser}! </div>
             <div className='first-blank'></div>
             <div className='second-blank'></div>
             <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit</button>
