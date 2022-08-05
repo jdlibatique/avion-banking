@@ -11,6 +11,11 @@ export default function Homepage() {
   const navigate = useNavigate();
   const { logout } = useLogout();
   const loggedInUser = auth.currentUser.email;
+    
+  
+    let today = Date.now();
+    let date = new Date(today);
+ 
 
   const [user, setUser] = useState("USER");
 
@@ -25,7 +30,7 @@ export default function Homepage() {
         </div>
         <section className='home-body'>
             <div className='hello-user'>Hello, {loggedInUser}! </div>
-            <div className='first-blank'></div>
+            <div className='first-blank'>{date.toDateString()}</div>
             <div className='second-blank'></div>
             <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit</button>
             <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw</button>

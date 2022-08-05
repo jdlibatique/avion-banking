@@ -37,6 +37,7 @@ body {
 .form-inner .form-group label{
     text-align: center;
     padding-right: 8px;
+    color: #06113C;
 }
 
 .form-inner .form-group input{
