@@ -7,14 +7,12 @@ import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase/config";
 import Swal from "sweetalert2";
 
-  
 function Transfer() {
     
     const navigate = useNavigate();
     const [accountNumber1, setAccountNumber1] = useState('');
     const [accountNumber2, setAccountNumber2] = useState('');
     const [amount, setAmount] = useState('');
-    const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     
@@ -29,7 +27,7 @@ function Transfer() {
                 Swal.fire(error.message)
             });
             if (!docSnap.exists()) {
-                Swal.fire("Oops!", "Receiver does not exist!", `error`)
+                Swal.fire("Oops!", "Account does not exist!", `error`)
                 return;
             }
             return docSnap.data().balance;
@@ -74,6 +72,11 @@ function Transfer() {
         console.log(amount, typeof amount)
         
         currentBalance = await getCurrentBalance(docRef2);
+    
+        if (isNaN(currentBalance)) {
+            Swal.fire("Oops!", "Receiver does not exist!", "error")
+            return;
+        }
         
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
@@ -94,7 +97,7 @@ function Transfer() {
                 <span>Avion Bank</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout' onClick={logout}>Logout</button>
+                    <button className='button-logout'>Logout</button>
                 </div>
             </div>
             <div className='transfer-body'>
