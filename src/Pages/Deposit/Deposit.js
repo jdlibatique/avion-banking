@@ -1,33 +1,74 @@
 import React from 'react'
 import './Deposit.css'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useState} from 'react'
 import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
+import {doc, getDoc, updateDoc} from "@firebase/firestore";
+import Swal from "sweetalert2";
+import {db} from "../../firebase/config";
 
 function Deposit() {
-
-  const navigate = useNavigate();
-
-  const [openConfirmation, setOpenConfirmation] = useState(false);
-
-
-  return (
-    <div className='withdraw-container'>
-        <div className='head-container'>
-            <span>Avion Banking</span>
-            <div className='home-out'>
-                <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                <button className='button-logout'>Logout</button>
+    
+    const navigate = useNavigate();
+    const [accountNumber, setAccountNumber] = useState('');
+    const [amount, setAmount] = useState('');
+    
+    const [openConfirmation, setOpenConfirmation] = useState(false);
+    
+    const updateAccount = async () => {
+        const docRef = doc(db, 'accounts', accountNumber);
+        let currentBalance = 0;
+        console.log(amount, typeof amount)
+    
+        const getCurrentBalance = async (docRef) => {
+            // const docSnap = await getDoc(docRef).then((doc) => {
+            //     console.log(doc.data().balance);
+            // }).catch((error) => {
+            //     Swal.fire(error.message)
+            // })
+        
+            const docSnap = await getDoc(docRef);
+            // console.log(docSnap.data())
+            // console.log(docSnap.data().balance)
+            console.log("docsnap: ", docSnap.data())
+            console.log("docSnap balance: ", docSnap.data().balance)
+            return docSnap.data().balance;
+        }
+    
+        currentBalance = await getCurrentBalance(docRef);
+    
+        console.log("currentBalance: ", currentBalance, typeof currentBalance)
+        let nextBalance = parseInt(currentBalance) + parseInt(amount)
+        console.log();
+    
+        updateDoc(docRef, {
+            balance: nextBalance
+        })
+            .then(() => {
+                Swal.fire(`Deposited to Account #${accountNumber}`, `Deposited ${amount}`, `success`)
+                console.log()
+            })
+    }
+    
+    
+    return (
+        <div className='withdraw-container'>
+            <div className='head-container'>
+                <span>Avion Banking</span>
+                <div className='home-out'>
+                    <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
+                    <button className='button-logout'>Logout</button>
+                </div>
             </div>
+                <div className={'deposit-body'} id={'depositForm'}>
+                    <input className='button-account' type="text" name="name" placeholder="Account #"
+                           onChange={e => setAccountNumber(e.target.value)}></input>
+                    <input className='button-amount' type="text" name="name" placeholder="Amount"
+                           onChange={e => setAmount(e.target.value)}></input>
+                    <button className="button-deposit" onClick={updateAccount}>Deposit</button>
+                </div>
         </div>
-        <div className='deposit-body'>
-            <input className='button-account' type="text" name="name" placeholder="Account #"></input>
-            <input className='button-amount'  type="text" name="name" placeholder="Amount"></input>
-            <button className="button-deposit" onClick={() => {setOpenConfirmation(true)}}>Deposit</button>
-        </div>
-        {openConfirmation && <ConfirmationOpen closeConfirmation={setOpenConfirmation}/>}
-    </div>
-  )
+    )
 }
 
 export default Deposit

@@ -14,11 +14,10 @@ export const useSignup = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 Swal.fire(`Welcome!` ,`Successfully signed up using ${userCredential.user.email}`, `success`);
-                dispatch({type: 'LOGIN', payload: userCredential.user })
-                
+                setTimeout(() => {dispatch({type: 'LOGIN', payload: userCredential.user })}, 1500);
         }).catch((error) => {
             setError(error.message);
-            Swal.fire(`Oops!` ,error.message, error);
+            Swal.fire(`Oops!` ,error.message, `error`);
         })
     }
     return { error, signup }
