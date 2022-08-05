@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import {useLogin} from "../hooks/useLogin";
-import {useSignup} from "../hooks/useSignup";
+import {useLogin} from "../../hooks/useLogin";
+import {useSignup} from "../../hooks/useSignup";
 import {useNavigate} from "react-router-dom";
 
 
@@ -9,11 +9,17 @@ function LoginForm({}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {error, login} = useLogin();
+    const {err, signup} = useSignup();
     const navigate = useNavigate();
     
     const submitHandler = e => {
         e.preventDefault();
         login(email, password)
+    }
+    
+    const signUpHandler = e => {
+        e.preventDefault();
+        signup(email, password);
     }
     
     return (
@@ -31,7 +37,7 @@ function LoginForm({}) {
                         <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)}/>
                     </div>
                     <button type="submit">Login</button>
-                    <button onClick={() => navigate("/Signup")}>Sign Up</button>
+                    <button onClick={signUpHandler}>Sign Up</button>
                 </div>
             </form>
         </>
