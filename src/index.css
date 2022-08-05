@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Roboto Slab', serif;
-}
+} 
  
 .form-inner {
     background-color: 
@@ -26,6 +26,7 @@ body {
     margin-top: 50px;
     margin-bottom: 30px;
     color: #06113C;
+    font-size: 35px;
 }
 
 .form-inner .form-group {
@@ -37,6 +38,7 @@ body {
 .form-inner .form-group label{
     text-align: center;
     padding-right: 8px;
+    color: black;
 }
 
 .form-inner .form-group input{

@@ -34,6 +34,7 @@ body {
     background-color: #FF8C32;
     box-shadow: 1px 3px #888888;
     cursor: pointer;
+    border-color: white;
 }
 
 .button-home:hover {
@@ -71,6 +72,7 @@ body {
     align-self: start;
     box-shadow: 4px 5px #888888;
     cursor: pointer;
+    border-color: white;
 }
 
 .home-body button:hover {
@@ -87,7 +89,7 @@ body {
     min-width: 300px;
     /*height: 100px;*/
     font-size: 25px;
-    background-color: #06113C;
+    background-color: #393E46;
     padding: 1rem;
     border-radius: .5rem;
 }
@@ -113,7 +115,7 @@ body {
     grid-row-end: 4;
     justify-self: center;
     align-self: flex-start;
-    background-color: #EEEEEE;
+    background-color: #393E46;
     width: 299px;
     height: 225px;
     border-radius: 5px;
