@@ -3,10 +3,13 @@ import './SearchAccount.css'
 import { useNavigate } from 'react-router-dom'
 import UserResult from '../SearchAccount/UserResult/UserResult'
 import { useState } from 'react'
+import {useLogout} from "../../hooks/useLogout";
+
 
 function SearchAccount() {
 
   const navigate = useNavigate();
+  const { logout } = useLogout();
 
   const [result, setResult] = useState(false);
 
@@ -16,7 +19,7 @@ function SearchAccount() {
             <span>Avion Banking</span>
             <div className='home-out'>
                 <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                <button className='button-logout'>Logout</button>
+                <button className='button-logout' onClick={logout}>Logout</button>
             </div>
         </div>
         <div className='search-body'>

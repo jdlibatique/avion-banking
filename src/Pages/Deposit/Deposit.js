@@ -6,12 +6,14 @@ import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
 import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import Swal from "sweetalert2";
 import {db} from "../../firebase/config";
+import {useLogout} from "../../hooks/useLogout";
 
 function Deposit() {
     
     const navigate = useNavigate();
     const [accountNumber, setAccountNumber] = useState('');
     const [amount, setAmount] = useState('');
+    const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     
@@ -55,7 +57,7 @@ function Deposit() {
                 <span>Avion Banking</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout'>Logout</button>
+                    <button className='button-logout' onClick={logout}>Logout</button>
                 </div>
             </div>
                 <div className={'deposit-body'} id={'depositForm'}>
