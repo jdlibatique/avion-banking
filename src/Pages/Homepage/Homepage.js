@@ -13,12 +13,11 @@ export default function Homepage() {
   const loggedInUser = auth.currentUser.email;
 
   const [user, setUser] = useState("USER");
-  
 
   return (
     <div className='home-container'>
         <div className='head-container'>
-            <span>Avion Bank <i className="fa-solid fa-sack-dollar"></i></span>
+            <span>Avion Bank <i class="fa-solid fa-sack-dollar"></i></span>
             <div className='home-out'>
                 <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
                 <button className='button-logout' onClick={logout}>Logout</button>

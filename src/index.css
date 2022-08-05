@@ -7,10 +7,10 @@
 body {
     font-family: 'Roboto Slab', serif;
 }
-
+ 
 .form-inner {
     background-color: 
-    #FF2D65;
+    #FF8C32;
     width: 500px;
     height: 400px;
     position: absolute;
@@ -25,6 +25,7 @@ body {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 30px;
+    color: #06113C;
 }
 
 .form-inner .form-group {
