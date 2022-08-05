@@ -23,31 +23,32 @@ function Transfer() {
         console.log(amount, typeof amount)
         
         const getCurrentBalance = async (docRef) => {
-            
             const docSnap = await getDoc(docRef).catch(error => {
                 Swal.fire(error.message)
             });
-            
             if (!docSnap.exists()) {
-                Swal.fire("Oops!", "Account does not exist", `error`)
+                Swal.fire("Oops!", "Receiver does not exist!", `error`)
                 return;
             }
-            
             return docSnap.data().balance;
         }
         
         currentBalance = await getCurrentBalance(docRef);
         
+        if (isNaN(currentBalance)) {
+            Swal.fire("Oops!", "Sender does not exist!", "error")
+            return;
+        }
+        
+        
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         if (isNaN(parseInt(amount)) || parseInt(amount) <= 0) {
             Swal.fire("Oops!", "Please enter a valid value!", "error")
             return;
-        }
-        else if (accountNumber1 === accountNumber2) {
+        } else if (accountNumber1 === accountNumber2) {
             Swal.fire("Oops!", "Can't transfer to the same account!", "error")
             return;
-        }
-        else if (parseInt(currentBalance) < parseInt(amount)) {
+        } else if (parseInt(currentBalance) < parseInt(amount)) {
             Swal.fire("Oops!", "Account does not have enough funds!", "error")
             return;
         }
@@ -64,18 +65,18 @@ function Transfer() {
                 // Swal.fire(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
             })
-    
+        
         const docRef2 = doc(db, 'accounts', accountNumber2);
         currentBalance = 0;
         nextBalance = 0;
         console.log(amount, typeof amount)
-    
+        
         currentBalance = await getCurrentBalance(docRef2);
-    
+        
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
         console.log();
-    
+        
         updateDoc(docRef2, {
             balance: nextBalance
         })
