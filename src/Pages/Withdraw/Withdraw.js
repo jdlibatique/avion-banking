@@ -39,7 +39,11 @@ function Withdraw() {
         currentBalance = await getCurrentBalance(docRef);
         
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
-        if (parseInt(currentBalance) < parseInt(amount)){
+        if (isNaN(parseInt(amount)) || parseInt(amount) <= 0) {
+            Swal.fire("Oops!", "Please enter a valid value!", "error")
+            return;
+        }
+        else if (parseInt(currentBalance) < parseInt(amount)){
             Swal.fire("Oops!", "Account does not have enough funds!", "error")
             return;
         }
@@ -52,7 +56,7 @@ function Withdraw() {
             balance: nextBalance
         })
             .then(() => {
-                Swal.fire(`Withdrew from Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
+                Swal.fire(`Withdrew ${amount} from Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log()
             })
     }
