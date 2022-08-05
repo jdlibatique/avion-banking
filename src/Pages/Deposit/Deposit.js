@@ -15,7 +15,7 @@ function Deposit() {
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     
-    const updateAccount = async () => {
+    const depositToAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
         let currentBalance = 0;
         let nextBalance = 0;
@@ -32,8 +32,6 @@ function Deposit() {
                 return;
             }
 
-            // console.log("docSnap: ", docSnap.data())
-            // console.log("docSnap balance: ", docSnap.data().balance)
             return docSnap.data().balance;
         }
     
@@ -65,7 +63,7 @@ function Deposit() {
                            onChange={e => setAccountNumber(e.target.value)}></input>
                     <input className='button-amount' type="text" name="name" placeholder="Amount"
                            onChange={e => setAmount(e.target.value)}></input>
-                    <button className="button-deposit" onClick={updateAccount}>Deposit</button>
+                    <button className="button-deposit" onClick={depositToAccount}>Deposit</button>
                 </div>
         </div>
     )
