@@ -38,6 +38,10 @@ function Deposit() {
         }
     
         currentBalance = await getCurrentBalance(docRef);
+        if (isNaN(parseInt(amount)) || parseInt(amount) <= 0) {
+            Swal.fire("Oops!", "Please enter a valid value!", "error")
+            return;
+        }
         
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
@@ -47,7 +51,7 @@ function Deposit() {
             balance: nextBalance
         })
             .then(() => {
-                Swal.fire(`Deposited to Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
+                Swal.fire(`Deposited ${amount} to Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log()
             })
     }
