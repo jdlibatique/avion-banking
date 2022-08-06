@@ -6,11 +6,10 @@
 
 body {
     font-family: 'Roboto Slab', serif;
-}
+} 
  
 .form-inner {
-    background-color: 
-    #FF8C32;
+    background-image: url('/src/Pages/Homepage/bankpic.jpg');
     width: 500px;
     height: 400px;
     position: absolute;
@@ -19,13 +18,16 @@ body {
     transform: translate(-50%,-50%);
     border-radius: 10px;
     padding: 15px;
+    background-size: cover;
+    background-position: center;
 }
 
 .form-inner h2 {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 30px;
-    color: #06113C;
+    color: #ffff;
+    font-size: 35px;
 }
 
 .form-inner .form-group {
@@ -37,11 +39,11 @@ body {
 .form-inner .form-group label{
     text-align: center;
     padding-right: 8px;
-    color: #06113C;
+    color: #ffff;
 }
 
 .form-inner .form-group input{
-    border: none;
+    border: 1px solid #ffff;
     outline: none;
     padding: 5px;
     border-radius: 5px;
@@ -58,11 +60,11 @@ body {
     border: none;
     height: 30px;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .form-inner button:hover {
-    background-color: #161853;
+    background-color:#4c4c4c;
     color: white;
 }
 /* * {

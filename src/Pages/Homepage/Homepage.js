@@ -11,13 +11,8 @@ export default function Homepage() {
   const navigate = useNavigate();
   const { logout } = useLogout();
   const loggedInUser = auth.currentUser.email;
-    
-  
-    let today = Date.now();
-    let date = new Date(today);
- 
 
-  const [user, setUser] = useState("USER");
+ 
 
   return (
     <div className='home-container'>
@@ -29,15 +24,15 @@ export default function Homepage() {
             </div>
         </div>
         <section className='home-body'>
-            <div className='hello-user'>Hello, {loggedInUser}! </div>
-            <div className='first-blank'>{date.toDateString()}</div>
-            <div className='second-blank'></div>
-            <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit</button>
-            <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw</button>
-            <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer</button>
-            <button className='search' onClick={() => navigate('/SearchAccount')}>Search Account</button>
-            <button className='view'>View Details</button>
-            <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts</button>
+            <div className='hello-user'></div>
+            <div className='first-blank'></div>
+            <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
+            <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit <br/> <i class="fa-brands fa-dropbox"></i></button>
+            <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw <br/> <i class="fa-solid fa-hand-holding-dollar"></i></button>
+            <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer <br/><i class="fa-solid fa-money-bill-transfer"></i></button>
+            <button className='search' onClick={() => navigate('/SearchAccount')}>Search Account<i class="fa-solid fa-person-circle-check"></i></button>
+            <button className='view'>View Details <br/> <i class="fa-solid fa-circle-info"></i></button>
+            <button className='manage' onClick={() => navigate('/ManageAccount')}>Manage Accounts <br/> <i class="fa-solid fa-list-check"></i></button>
         </section>
     </div>
   )

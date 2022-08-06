@@ -2,7 +2,7 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    background-color: #393E46;
+    background-color: #4b5057;
     color: white;
 }
 
@@ -34,6 +34,7 @@ body {
     background-color: #FF8C32;
     box-shadow: 1px 3px #888888;
     cursor: pointer;
+    border-color: white;
 }
 
 .button-home:hover {
@@ -56,9 +57,10 @@ body {
 .home-body {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
     height: 500px;  
     margin: 0px 30px 30px 30px;
+    margin-top: 80px;
 }
 
 .home-body button {
@@ -68,9 +70,10 @@ body {
     margin-top: 0px;
     border-radius: 5px;
     font-size: 20px;
-    align-self: start;
+    align-self: center;
     box-shadow: 4px 5px #888888;
     cursor: pointer;
+    border-color: white;
 }
 
 .home-body button:hover {
@@ -84,16 +87,17 @@ body {
     justify-self: center;
     align-self: center;
     color: #D9D9D9;
-    min-width: 300px;
+    min-width: 370px;
     /*height: 100px;*/
-    font-size: 2rem;
-    background-color: #06113C;
+    text-align: center;
+    font-size: 25px;
+    background-color: #4b5057;
     padding: 1rem;
     border-radius: .5rem;
+    margin-bottom: 50px;
 }
 
 .first-blank {
-    display: flex;
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 1;
@@ -101,15 +105,10 @@ body {
     margin-right: 50px;
     justify-self: center;
     align-self: center;
-    justify-content: center;
-    align-items: center;
-    min-width: 600px;
-    /*height: 100px;*/
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: #06113C;
-    color: #EEEEEE;
-    font-size: 2rem;
+    background-color: #4b5057;
+    width: 600px;
+    height: 100px;
+    border-radius: 5px;
 }
 
 .second-blank {
@@ -119,8 +118,11 @@ body {
     grid-row-end: 4;
     justify-self: center;
     align-self: flex-start;
-    background-color: #EEEEEE;
-    width: 299px;
-    height: 225px;
+    width: 370px;
+    height: 265px;
     border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/src/Pages/Homepage/bankpic.jpg');
+    
 }
