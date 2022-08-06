@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
 import { useState } from 'react'
 import {db} from "../../firebase/config";
-import {addDoc, collection, getDocs} from "@firebase/firestore";
+import {setDoc, collection, getDocs, serverTimestamp, doc, addDoc, getDoc} from "@firebase/firestore";
 import {useLogout} from "../../hooks/useLogout";
+import Swal from "sweetalert2";
 
 function ManageAccount() {
     
@@ -14,13 +15,14 @@ function ManageAccount() {
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
     const [accounts, setAccounts] = useState(null);
+    const [newAccount, setNewAccount] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [balance, setBalance] = useState("");
     
     useEffect(() => {
         const ref = collection(db, 'accounts');
-        
+
         getDocs(ref).then((snapshot) => {
             let results = [];
             snapshot.docs.forEach(doc => {
@@ -29,6 +31,41 @@ function ManageAccount() {
             setAccounts(results);
         })
     }, [])
+    
+    const addNewAccount = async (event) => {
+        event.preventDefault();
+        // const ref = collection(db, 'accounts', newAccount);
+        const docRef = doc(db, 'accounts', newAccount);
+        const docSnap = await getDoc(docRef).catch(error =>{
+            Swal.fire(error.message)
+        });
+        if (docSnap.exists()) {
+            Swal.fire("Oops!", "This account number already exists!", `error`)
+            return;
+        }
+        if (isNaN(parseInt(newAccount)) || parseInt(newAccount) <= 0) {
+            Swal.fire("Oops!", "Account numbers must be positive values!", "error");
+            return;
+        }
+        await setDoc(doc(db, "accounts", newAccount), {
+            firstName: firstName,
+            lastName: lastName,
+            balance: balance,
+            createdOn: serverTimestamp()
+        }).then((doc) => {
+            Swal.fire("Created New Account", `Account ${newAccount} created for ${firstName} ${lastName}!`, "success")
+            const ref = collection(db, 'accounts');
+            getDocs(ref).then((snapshot) => {
+                let results = [];
+                snapshot.docs.forEach(doc => {
+                    results.push({id: doc.id, ...doc.data()});
+                })
+                setAccounts(results);
+            })
+        }).catch(error => {
+            Swal.fire("Oops!", error.message, "error")
+        })
+    }
     
     // const submitHandler = evt => {
     //     evt.preventDefault();
@@ -53,10 +90,11 @@ function ManageAccount() {
                     <button className='button-logout' onClick={logout}>Logout</button>
                 </div>
             </div>
-                <form className='manage-accounts-body'>
-                    <input className='button-account' type="text" name="name" placeholder="Account #"></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="First Name"></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="Last Name"></input>
+                <form className='manage-accounts-body' onSubmit={addNewAccount}>
+                    <input className='button-account' type="text" name="name" placeholder="Account #" onChange={e => setNewAccount(e.target.value)}></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="First Name" onChange={e => setFirstName(e.target.value)}></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Last Name" onChange={e => setLastName(e.target.value)}></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Initial Balance" onChange={e => setBalance(e.target.value)}></input>
                     <button className="button-create-user" type={'submit'}>Create User</button>
                 </form>
             <div>
