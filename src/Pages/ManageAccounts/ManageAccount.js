@@ -34,26 +34,20 @@ function ManageAccount() {
     
     const addNewAccount = async (event) => {
         event.preventDefault();
-        // const ref = collection(db, 'accounts', newAccount);
-        const docRef = doc(db, 'accounts', newAccount);
-        const docSnap = await getDoc(docRef).catch(error =>{
-            Swal.fire(error.message)
-        });
-        if (docSnap.exists()) {
-            Swal.fire("Oops!", "This account number already exists!", `error`)
+        console.log(accounts.length);
+        let accountNumber = await accounts.length + 1;
+        console.log(accountNumber)
+        if (parseInt(balance) <= 0) {
+            Swal.fire("Oops!", "Initial balance must be a positive value!", "error");
             return;
         }
-        if (isNaN(parseInt(newAccount)) || parseInt(newAccount) <= 0) {
-            Swal.fire("Oops!", "Account numbers must be positive values!", "error");
-            return;
-        }
-        await setDoc(doc(db, "accounts", newAccount), {
+        await setDoc(doc(db, "accounts", `${accountNumber}`), {
             firstName: firstName,
             lastName: lastName,
             balance: balance,
             createdOn: serverTimestamp()
         }).then((doc) => {
-            Swal.fire("Created New Account", `Account ${newAccount} created for ${firstName} ${lastName}!`, "success")
+            Swal.fire("Created New Account", `Account ${accountNumber} created for ${firstName} ${lastName}!`, "success")
             const ref = collection(db, 'accounts');
             getDocs(ref).then((snapshot) => {
                 let results = [];
@@ -91,7 +85,7 @@ function ManageAccount() {
                 </div>
             </div>
                 <form className='manage-accounts-body' onSubmit={addNewAccount}>
-                    <input className='button-account' type="text" name="name" placeholder="Account #" onChange={e => setNewAccount(e.target.value)}></input>
+                    {/*<input className='button-account' type="text" name="name" placeholder="Account #" onChange={e => setNewAccount(e.target.value)}></input>*/}
                     <input className='button-amount'  type="text" name="name" placeholder="First Name" onChange={e => setFirstName(e.target.value)}></input>
                     <input className='button-amount'  type="text" name="name" placeholder="Last Name" onChange={e => setLastName(e.target.value)}></input>
                     <input className='button-amount'  type="text" name="name" placeholder="Initial Balance" onChange={e => setBalance(e.target.value)}></input>
