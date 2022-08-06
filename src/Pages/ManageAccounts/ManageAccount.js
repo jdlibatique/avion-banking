@@ -61,20 +61,6 @@ function ManageAccount() {
         })
     }
     
-    // const submitHandler = evt => {
-    //     evt.preventDefault();
-    //     evt.preventDefault();
-    //     addDoc(collectionRef, {
-    //         title: addBookForm.title.value,
-    //         author: addBookForm.author.value,
-    //         createdAt: serverTimestamp(),
-    //     })
-    //         .then(() => {
-    //             addBookForm.reset();
-    //             alert("Successfully added comment!")
-    //         })
-    // }
-    
     return (
         <div className='withdraw-container'>
             <div className='head-container'>
@@ -85,7 +71,6 @@ function ManageAccount() {
                 </div>
             </div>
                 <form className='manage-accounts-body' onSubmit={addNewAccount}>
-                    {/*<input className='button-account' type="text" name="name" placeholder="Account #" onChange={e => setNewAccount(e.target.value)}></input>*/}
                     <input className='button-amount'  type="text" name="name" placeholder="First Name" onChange={e => setFirstName(e.target.value)}></input>
                     <input className='button-amount'  type="text" name="name" placeholder="Last Name" onChange={e => setLastName(e.target.value)}></input>
                     <input className='button-amount'  type="text" name="name" placeholder="Initial Balance" onChange={e => setBalance(e.target.value)}></input>
