@@ -7,6 +7,7 @@ import {db} from "../../firebase/config";
 import {setDoc, collection, getDocs, serverTimestamp, doc, addDoc, getDoc} from "@firebase/firestore";
 import {useLogout} from "../../hooks/useLogout";
 import Swal from "sweetalert2";
+import UserDetails from "../UserDetails/UserDetails";
 
 function ManageAccount() {
     
@@ -78,6 +79,7 @@ function ManageAccount() {
                 </form>
             <div>
                 {console.log(accounts)}
+                {UserDetails(accounts)}
             </div>
         </div>
     )

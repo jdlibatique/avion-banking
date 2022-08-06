@@ -12,8 +12,6 @@ export default function Homepage() {
   const { logout } = useLogout();
   const loggedInUser = auth.currentUser.email;
 
- 
-
   return (
     <div className='home-container'>
         <div className='head-container'>
