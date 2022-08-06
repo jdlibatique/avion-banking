@@ -15,7 +15,7 @@ function ManageAccount() {
     const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
-    const [accounts, setAccounts] = useState(null);
+    const [accounts, setAccounts] = useState([]);
     const [newAccount, setNewAccount] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");

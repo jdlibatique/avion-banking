@@ -1,4 +1,11 @@
 
+.account-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .details {
     background-color: #232931;
     color: white;
@@ -10,6 +17,7 @@
     border-radius: 10px;
     align-items: center;
     padding: 1rem 2rem;
+    margin-bottom: 1rem;
 }
 
 .details .top {
