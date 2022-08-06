@@ -7,9 +7,17 @@
     border-radius: 10px;
     grid-template-columns: 1fr 1fr;
     color: white;
-
     align-items: center;
     justify-content: center;
+    padding: 1rem;
+}
+
+.acc-num {
+    color: #FF8C32;
+}
+
+.bal {
+    color: #FF8C32;
 }
 
 /* .acc-num {

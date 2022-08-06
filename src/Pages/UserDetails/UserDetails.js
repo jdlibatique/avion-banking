@@ -5,9 +5,10 @@ function UserDetails() {
   return (
     <>
     <div className='user-container'>
-        <span className='acc-num'>Account Number:</span>
-        <span className='bal'>Balance:</span>
+        <span className='acc-num'>Account #: {}</span>
+        <span className='bal'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance:</span>
         <span className='firt-last'>First Name: {} Last Name: {}</span>
+        <span className='remain-bal'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}</span>
     </div>
     </>
   )
