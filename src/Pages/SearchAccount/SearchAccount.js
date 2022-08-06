@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import UserResult from '../SearchAccount/UserResult/UserResult'
 import { useState } from 'react'
 import {useLogout} from "../../hooks/useLogout";
+import UserDetails from '../UserDetails/UserDetails'
 
 
 function SearchAccount() {
@@ -27,6 +28,7 @@ function SearchAccount() {
             <button className='button-search' onClick={() => {setResult(true)}}> Search <i className="fa-solid fa-magnifying-glass"></i> </button>
         </div>
          {result && <UserResult closeResult={setResult} />}
+         <UserDetails />
     </div>
   )
 }

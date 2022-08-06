@@ -1,0 +1,43 @@
+.user-container {
+    display: grid;
+    width: 500px;
+    height: 100px;
+    font-size: 20px;
+    background-color: #232931;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.acc-num {
+    color: #FF8C32;
+}
+
+.bal {
+    color: #FF8C32;
+}
+
+/* .acc-num {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.bal {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+}
+
+.firt-last {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+} */
