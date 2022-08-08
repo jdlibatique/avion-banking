@@ -6,7 +6,7 @@ function UserDetails(accounts) {
         <>
             <div className={"account-container"}>
                 {accounts.map((account) => (
-                    <div className='details'>
+                    <div className='details' key={account.id}>
                         <ul className='top'>
                             <li>Account #: {account.id}</li>
                             <li>Balance</li>

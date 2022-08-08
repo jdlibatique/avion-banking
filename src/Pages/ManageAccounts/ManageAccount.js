@@ -19,7 +19,7 @@ function ManageAccount() {
     const [newAccount, setNewAccount] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [balance, setBalance] = useState("");
+    const [balance, setBalance] = useState();
     
     useEffect(() => {
         const ref = collection(db, 'accounts');
@@ -36,7 +36,7 @@ function ManageAccount() {
     const addNewAccount = async (event) => {
         event.preventDefault();
         console.log(accounts.length);
-        let accountNumber = await accounts.length + 1;
+        let accountNumber = accounts.length + 1;
         console.log(accountNumber)
         if (parseInt(balance) <= 0) {
             Swal.fire("Oops!", "Initial balance must be a positive value!", "error");
@@ -45,7 +45,7 @@ function ManageAccount() {
         await setDoc(doc(db, "accounts", `${accountNumber}`), {
             firstName: firstName,
             lastName: lastName,
-            balance: balance,
+            balance: parseInt(balance),
             createdOn: serverTimestamp()
         }).then((doc) => {
             Swal.fire("Created New Account", `Account ${accountNumber} created for ${firstName} ${lastName}!`, "success")
