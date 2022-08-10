@@ -9,7 +9,7 @@ body {
 } 
  
 .form-inner {
-    background-image: url('/src/Pages/Homepage/bankpic.jpg');
+    background-image: url('../public/images/bankpic.jpg');
     width: 500px;
     height: 400px;
     position: absolute;
@@ -20,6 +20,7 @@ body {
     padding: 15px;
     background-size: cover;
     background-position: center;
+    box-shadow: 3px 4px #0F3D3E;
 }
 
 .form-inner h2 {

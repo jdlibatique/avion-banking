@@ -25,6 +25,7 @@ function LoginForm({}) {
     return (
         <>
             <form onSubmit={submitHandler}>
+                <div className='login-header'> </div>
                 <div className='form-inner'>
                     <h2>Avion Bank <i class="fa-solid fa-sack-dollar"></i> </h2>
                     {/*{(error != "") ? (<div className='error'>{error}</div>) : ""}*/}

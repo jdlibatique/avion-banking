@@ -15,7 +15,7 @@ export default function Homepage() {
   return (
     <div className='home-container'>
         <div className='head-container'>
-            <span>Avion Bank <i class="fa-solid fa-sack-dollar"></i></span>
+            <span> <p> Avion Bank <i class="fa-solid fa-sack-dollar"></i> </p></span>
             <div className='home-out'>
                 <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
                 <button className='button-logout' onClick={logout}>Logout</button>

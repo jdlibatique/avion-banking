@@ -7,13 +7,14 @@
 }
 
 .button-withdraw {
-    background-color: #FF8C32;
+    background-color: #0F3D3E;
     width: 250px;
     height: 50px;
     border-radius: 5px;
     font-size: 20px;
     margin-bottom: 10px;
     cursor: pointer;
+    color: white;
 } 
 
 .button-withdraw:hover {

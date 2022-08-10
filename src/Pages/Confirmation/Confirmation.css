@@ -1,9 +1,20 @@
-.head-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: #232931;
+* {
+    margin: 0;
+    padding: 0;
 }
 
+.login-header {
+    height: 52.8px;
+    width: 100%;
+    background-color: #0F3D3E;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+
+.login-header p {
+    color: blue;
+}
 
 .home-out button {
     margin-right: 20px;

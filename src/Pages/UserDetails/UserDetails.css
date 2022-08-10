@@ -7,7 +7,7 @@
 }
 
 .details {
-    background-color: #232931;
+    background-color: #100F0F;
     color: white;
     display: flex;
     flex-direction: column;
@@ -26,7 +26,7 @@
     justify-content: space-between;
     width: 100%;
     list-style: none;
-    color: #FF8C32;
+    color: #E2DCC8;
     align-self: center;
     
 }
