@@ -28,7 +28,6 @@ function SearchAccount() {
             <button className='button-search' onClick={() => {setResult(true)}}> Search <i className="fa-solid fa-magnifying-glass"></i> </button>
         </div>
          {result && <UserResult closeResult={setResult} />}
-         <UserDetails />
     </div>
   )
 }
