@@ -33,6 +33,19 @@ function Withdraw() {
   }
 
   const confirmWithdraw = () => {
+    if ((accountNumber) === '' && (amount) === "") {
+      Swal.fire("Please enter account number and amount")
+      return;
+  }
+     if ((amount) === "") {
+    Swal.fire("Please enter the amount")
+    return;
+  }
+    if ((accountNumber) === '') {
+      Swal.fire("Please enter account number")
+      return;
+  }
+
     Swal.fire({
       title: 'Confirm withdraw?',
       showDenyButton: true,

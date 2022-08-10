@@ -32,6 +32,19 @@ function Deposit() {
       }
 
       const confirmDeposit = () => {
+        if ((accountNumber) === '' && (amount) === "") {
+          Swal.fire("Please enter account number and amount")
+          return;
+      }
+         if ((amount) === "") {
+        Swal.fire("Please enter the amount")
+        return;
+      }
+        if ((accountNumber) === '') {
+          Swal.fire("Please enter account number")
+          return;
+      }
+      
         Swal.fire({
           title: 'Confirm deposit?',
           showDenyButton: true,
@@ -71,6 +84,8 @@ function Deposit() {
             Swal.fire("Oops!", "Please enter a valid value!", "error")
             return;
         }
+
+      
 
          
         console.log("currentBalance: ", currentBalance, typeof currentBalance)

@@ -33,6 +33,23 @@ function Transfer() {
       }
 
       const confirmTranfer = () => {
+            if ((accountNumber1) === '' && (accountNumber2) === "" && (amount) === "") {
+            Swal.fire("Please enter account numbers and amount")
+            return;
+        }
+             if ((amount) === "") {
+            Swal.fire("Please enter the amount")
+            return;
+        }
+            if ((accountNumber1) === '') {
+              Swal.fire("Please enter sender's account number")
+              return;
+        }
+        if ((accountNumber2) === '') {
+            Swal.fire("Please enter recipient's account number")
+            return;
+      }
+        
         Swal.fire({
           title: 'Confirm transfer?',
           showDenyButton: true,
