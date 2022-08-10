@@ -31,6 +31,20 @@ function Withdraw() {
       }
     })
   }
+
+  const confirmWithdraw = () => {
+    Swal.fire({
+      title: 'Confirm withdraw?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        withdrawFromAccount();
+      } else if (result.isDenied) {
+       return;
+      }
+    })
+  }
     
     const withdrawFromAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
@@ -72,7 +86,7 @@ function Withdraw() {
             balance: nextBalance
         })
             .then(() => {
-                Swal.fire(`Withdrew ${amount} from Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
+                Swal.fire(`Withdraw ${amount} from Account #${accountNumber}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log()
             })
     }
@@ -89,7 +103,7 @@ function Withdraw() {
         <div className='withdraw-body'>
             <input className='button-account' type="text" name="name" placeholder="Account #" onChange={e => setAccountNumber(e.target.value)}></input>
             <input className='button-amount'  type="text" name="name" placeholder="Amount" onChange={e => setAmount(e.target.value)}></input>
-            <button className="button-withdraw" onClick={withdrawFromAccount}>Withdraw</button>
+            <button className="button-withdraw" onClick={confirmWithdraw}>Withdraw</button>
         </div>
     </div>
   )

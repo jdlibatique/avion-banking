@@ -30,6 +30,21 @@ function Deposit() {
           }
         })
       }
+
+      const confirmDeposit = () => {
+        Swal.fire({
+          title: 'Confirm deposit?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+
+          if (result.isConfirmed) {
+            depositToAccount();
+          } else if (result.isDenied) {
+           return;
+          }
+        })
+      }
     
     const depositToAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
@@ -56,6 +71,7 @@ function Deposit() {
             Swal.fire("Oops!", "Please enter a valid value!", "error")
             return;
         }
+
          
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
@@ -79,11 +95,11 @@ function Deposit() {
                 </div>
             </div>
                 <div className={'deposit-body'} id={'depositForm'}>
-                    <input className='button-account' type="text" name="name" placeholder="Account #"
+                    <input className='button-account' id='btn-acc' type="text" name="name" placeholder="Account #"
                            onChange={e => setAccountNumber(e.target.value)}></input>
                     <input className='button-amount' type="text" name="name" placeholder="Amount"
                            onChange={e => setAmount(e.target.value)}></input>
-                    <button className="button-deposit" onClick={depositToAccount}>Deposit</button>
+                    <button className="button-deposit" onClick={confirmDeposit}>Deposit</button>
                 </div>
         </div>
     )

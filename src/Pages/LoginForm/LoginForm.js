@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {useLogin} from "../../hooks/useLogin";
 import {useSignup} from "../../hooks/useSignup";
 import {useNavigate} from "react-router-dom";
+// import '../Homepage/Homepage.css'
+// import '../../index.css'
 
 
 function LoginForm({}) {
@@ -24,8 +26,9 @@ function LoginForm({}) {
     
     return (
         <>
+        <div className='head-container'>
+        </div>
             <form onSubmit={submitHandler}>
-                <div className='login-header'> </div>
                 <div className='form-inner'>
                     <h2>Avion Bank <i class="fa-solid fa-sack-dollar"></i> </h2>
                     {/*{(error != "") ? (<div className='error'>{error}</div>) : ""}*/}

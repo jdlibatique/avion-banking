@@ -34,6 +34,20 @@ function ManageAccount() {
           }
         })
       }
+
+    //   const confirmCreation = () => {
+    //     Swal.fire({
+    //       title: 'Confirm creation?',
+    //       showDenyButton: true,
+    //       confirmButtonText: 'Yes',
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {
+    //         addNewAccount();
+    //       } else if (result.isDenied) {
+    //        return;
+    //       }
+    //     })
+    //   }
     
     useEffect(() => {
         const ref = collection(db, 'accounts');

@@ -40,7 +40,7 @@ export default function Homepage() {
             <div className='hello-user'></div>
             <div className='first-blank'></div>
             <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
-            <button className='deposit' onClick={() => navigate('/Withdraw')}>Deposit <br/> <i class="fa-brands fa-dropbox"></i></button>
+            <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit <br/> <i class="fa-brands fa-dropbox"></i></button>
             <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw <br/> <i class="fa-solid fa-hand-holding-dollar"></i></button>
             <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer <br/><i class="fa-solid fa-money-bill-transfer"></i></button>
             <button className='search'>Search Account<i class="fa-solid fa-person-circle-check"></i></button>

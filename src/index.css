@@ -7,6 +7,13 @@
 body {
     font-family: 'Roboto Slab', serif;
 } 
+
+
+.head-container {
+    height: 52.8px;
+    background-color: #0F3D3E;
+    width: 100%;
+}
  
 .form-inner {
     background-image: url('../public/images/bankpic.jpg');

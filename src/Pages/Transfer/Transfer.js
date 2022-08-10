@@ -31,6 +31,20 @@ function Transfer() {
           }
         })
       }
+
+      const confirmTranfer = () => {
+        Swal.fire({
+          title: 'Confirm transfer?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            transferToAccount();
+          } else if (result.isDenied) {
+           return;
+          }
+        })
+      }
     
     const transferToAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber1);
@@ -123,7 +137,7 @@ function Transfer() {
                        onChange={e => setAccountNumber2(e.target.value)}></input>
                 <input className='button-amount' type="text" name="name" placeholder="Amount"
                        onChange={e => setAmount(e.target.value)}></input>
-                <button className="button-transfer" onClick={transferToAccount}>Transfer
+                <button className="button-transfer" onClick={confirmTranfer}>Transfer
                 </button>
             </div>
             {openConfirmation && <ConfirmationOpen closeConfirmation={setOpenConfirmation}/>}
