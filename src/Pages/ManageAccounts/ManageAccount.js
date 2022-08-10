@@ -41,6 +41,9 @@ function ManageAccount() {
         if (parseInt(balance) <= 0) {
             Swal.fire("Oops!", "Initial balance must be a positive value!", "error");
             return;
+        } else if (isNaN(parseInt(balance))) {
+            Swal.fire("Oops!", "Please enter a number value!", "error");
+            return;
         }
         await setDoc(doc(db, "accounts", `${accountNumber}`), {
             firstName: firstName,
