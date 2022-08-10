@@ -2,7 +2,6 @@ import React from 'react'
 import './Deposit.css'
 import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
-import ConfirmationOpen from '../Confirmation/ConfirmationOpen';
 import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import Swal from "sweetalert2";
 import {db} from "../../firebase/config";
@@ -15,8 +14,6 @@ function Deposit() {
     const [amount, setAmount] = useState('');
     const { logout } = useLogout();
     
-    const [openConfirmation, setOpenConfirmation] = useState(false);
-
     const exit = () => {
         Swal.fire({
           title: 'Are you sure you want to exit?',
@@ -25,9 +22,7 @@ function Deposit() {
         }).then((result) => {
           if (result.isConfirmed) {
             logout();
-          } else if (result.isDenied) {
-           return;
-          }
+          } 
         })
       }
 

@@ -26,9 +26,7 @@ function Withdraw() {
     }).then((result) => {
       if (result.isConfirmed) {
         logout();
-      } else if (result.isDenied) {
-       return;
-      }
+      } 
     })
   }
 

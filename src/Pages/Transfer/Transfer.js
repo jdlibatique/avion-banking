@@ -57,9 +57,7 @@ function Transfer() {
         }).then((result) => {
           if (result.isConfirmed) {
             transferToAccount();
-          } else if (result.isDenied) {
-           return;
-          }
+          } 
         })
       }
     

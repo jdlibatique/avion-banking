@@ -21,9 +21,7 @@ export default function Homepage() {
     }).then((result) => {
       if (result.isConfirmed) {
         logout();
-      } else if (result.isDenied) {
-       return;
-      }
+      } 
     })
   }
 
