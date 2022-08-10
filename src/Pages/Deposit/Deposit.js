@@ -16,6 +16,20 @@ function Deposit() {
     const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
+
+    const exit = () => {
+        Swal.fire({
+          title: 'Are you sure you want to exit?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            logout();
+          } else if (result.isDenied) {
+           return;
+          }
+        })
+      }
     
     const depositToAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
@@ -42,7 +56,7 @@ function Deposit() {
             Swal.fire("Oops!", "Please enter a valid value!", "error")
             return;
         }
-        
+         
         console.log("currentBalance: ", currentBalance, typeof currentBalance)
         nextBalance = parseInt(currentBalance) + parseInt(amount)
         console.log();
@@ -61,7 +75,7 @@ function Deposit() {
                 <span>Avion Banking</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout' onClick={logout}>Logout</button>
+                    <button className='button-logout' onClick={exit}>Logout</button>
                 </div>
             </div>
                 <div className={'deposit-body'} id={'depositForm'}>

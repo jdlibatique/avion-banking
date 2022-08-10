@@ -7,7 +7,7 @@ import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase/config";
 import Swal from "sweetalert2";
 import {useLogout} from "../../hooks/useLogout";
-
+ 
 
 function Withdraw() {
 
@@ -17,6 +17,20 @@ function Withdraw() {
     const { logout } = useLogout();
 
   const [openConfirmation, setOpenConfirmation] = useState(false);
+
+  const exit = () => {
+    Swal.fire({
+      title: 'Are you sure you want to exit?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+      } else if (result.isDenied) {
+       return;
+      }
+    })
+  }
     
     const withdrawFromAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber);
@@ -69,7 +83,7 @@ function Withdraw() {
             <span>Avion Banking</span>
             <div className='home-out'>
                 <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                <button className='button-logout' onClick={logout}>Logout</button>
+                <button className='button-logout' onClick={exit}>Logout</button>
             </div>
         </div>
         <div className='withdraw-body'>

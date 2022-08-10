@@ -20,6 +20,20 @@ function ManageAccount() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [balance, setBalance] = useState("");
+
+    const exit = () => {
+        Swal.fire({
+          title: 'Are you sure you want to exit?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            logout();
+          } else if (result.isDenied) {
+           return;
+          }
+        })
+      }
     
     useEffect(() => {
         const ref = collection(db, 'accounts');
@@ -68,7 +82,7 @@ function ManageAccount() {
                 <span>Avion Bank</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout' onClick={logout}>Logout</button>
+                    <button className='button-logout' onClick={exit}>Logout</button>
                 </div>
             </div>
                 <form className='manage-accounts-body' onSubmit={addNewAccount}>

@@ -43,7 +43,6 @@ body {
 .button-home:hover {
     transform: scale(1.03);
     transition: .3s ease;
-    color: white;
 }
 
 .button-logout {
@@ -82,7 +81,6 @@ body {
 }
 
 .home-body button:hover {
-    color: white;
     transform: scale(1.03);
     transform: .8s ease;
     box-shadow: 4px 5px #EEEEEE;
@@ -130,6 +128,6 @@ body {
     background-size: cover;
     background-position: center;
     background-image: url('../../../public/images/bankpic.jpg');
-    box-shadow: 2px 3px #0F3D3E;
+    box-shadow: 3px 3px #0F3D3E;
     
 }

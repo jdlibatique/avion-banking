@@ -17,6 +17,20 @@ function Transfer() {
     const { logout } = useLogout();
     
     const [openConfirmation, setOpenConfirmation] = useState(false);
+
+    const exit = () => {
+        Swal.fire({
+          title: 'Are you sure you want to exit?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            logout();
+          } else if (result.isDenied) {
+           return;
+          }
+        })
+      }
     
     const transferToAccount = async () => {
         const docRef = doc(db, 'accounts', accountNumber1);
@@ -35,7 +49,7 @@ function Transfer() {
             return docSnap.data().balance;
         }
         
-        currentBalance = await getCurrentBalance(docRef);
+        currentBalance = await getCurrentBalance(docRef); 
         
         if (isNaN(currentBalance)) {
             Swal.fire("Oops!", "Sender does not exist!", "error")
@@ -99,7 +113,7 @@ function Transfer() {
                 <span>Avion Bank</span>
                 <div className='home-out'>
                     <button className='button-home' onClick={() => navigate('/Homepage')}>Home</button>
-                    <button className='button-logout' onClick={logout}>Logout</button>
+                    <button className='button-logout' onClick={exit}>Logout</button>
                 </div>
             </div>
             <div className='transfer-body'>
