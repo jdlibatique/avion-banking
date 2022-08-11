@@ -5,6 +5,8 @@ import { useState } from 'react';
 import {useLogout} from "../../hooks/useLogout";
 import {auth} from "../../firebase/config";
 import Swal from "sweetalert2";
+import Calendar from 'react-calendar';
+
 
 
 export default function Homepage() {
@@ -12,6 +14,7 @@ export default function Homepage() {
   const navigate = useNavigate();
   const { logout } = useLogout();
   const loggedInUser = auth.currentUser.email;
+  const [date, setDate] = useState(new Date());
 
   const exit = () => {
     Swal.fire({
@@ -34,10 +37,17 @@ export default function Homepage() {
                 <button className='button-logout' onClick={exit}>Logout</button>
             </div>
         </div>
+
+            <div className='top-container'>
+              <div className='hello-user'></div>
+              <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
+          <section className="first-blank">
+              <div className='calendar-container'>
+                 <Calendar onChange={setDate} value={date} />
+              </div>
+          </section>
+            </div>
         <section className='home-body'>
-            <div className='hello-user'></div>
-            <div className='first-blank'></div>
-            <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
             <button className='deposit' onClick={() => navigate('/Deposit')}>Deposit <br/> <i class="fa-brands fa-dropbox"></i></button>
             <button className='withdraw' onClick={() => navigate('/Withdraw')}>Withdraw <br/> <i class="fa-solid fa-hand-holding-dollar"></i></button>
             <button className='transfer' onClick={() =>navigate('/Transfer')}>Transfer <br/><i class="fa-solid fa-money-bill-transfer"></i></button>
@@ -48,4 +58,5 @@ export default function Homepage() {
     </div>
   )
 }
+
 
