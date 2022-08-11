@@ -16,7 +16,7 @@ function SignupForm({}) {
     
     const submitHandler = e => {
         e.preventDefault();
-        signup(email, password);
+        signup(email, password, displayName, displayPhoto);
     }
     
     const handleFileChange = (evt) => {
@@ -66,7 +66,8 @@ function SignupForm({}) {
                         {displayPhotoError && <div className={"error"}>{displayPhotoError}</div>}
                     </div>
                     <button type="submit">Login</button>
-                    <button onClick={() => navigate("/SignupForm")}>Sign Up</button>
+                    <button onClick={submitHandler}>Sign Up</button>
+                    {error && <div className={"error"}>{error}</div>}
                 </div>
             </form>
         </>

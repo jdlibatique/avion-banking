@@ -10,6 +10,7 @@ import {useAuthContext} from "./hooks/useAuthContext";
 import SignupForm from "./Pages/SignupPage/SignupForm";
 import ManageAccount from "./Pages/ManageAccounts/ManageAccount";
 import SearchAccount from "./Pages/SearchAccount/SearchAccount";
+import { auth } from "./firebase/config";
 
 
 function App() {
@@ -20,8 +21,8 @@ function App() {
             {authIsReady && (
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={!user ? <LoginForm /> : <Navigate to="/Homepage" />}/>
-                        <Route path='/Signup' element={!user ? <SignupForm /> : <Navigate to="/Homepage" />}/>
+                        <Route path='/' element={!user ? <LoginForm /> : auth.currentUser.email === 'admin@avionbanking.com' ?  <Navigate to="/Homepage" /> : <Navigate to="/Dashboard" />}/>
+                        <Route path='/SignupForm' element={!user ? <SignupForm /> : <Navigate to="/Homepage" />}/>
                         <Route path='/Homepage' element={user ? <Homepage /> : <Navigate to="/" />}/>
                         <Route path='/Deposit' element={user ? <Deposit/> : <Navigate to="/" />}/>
                         <Route path='/Withdraw' element={user ? <Withdraw/> : <Navigate to="/" />}/>
@@ -29,6 +30,7 @@ function App() {
                         <Route path='/Confirmation' element={user ? <Confirmation/> : <Navigate to="/" />}/>
                         <Route path='/ManageAccount' element={user ? <ManageAccount/> : <Navigate to="/" />}/>
                         <Route path='/SearchAccount' element={user ? <SearchAccount/> : <Navigate to="/" />}/>
+                        <Route path='/Dashboard' element={user ? <SearchAccount/> : <Navigate to="/" />}/>
                     </Routes>
                 </BrowserRouter>
             )}

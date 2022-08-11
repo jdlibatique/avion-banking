@@ -1,7 +1,11 @@
-import { useState } from "react";
-import {auth} from '../firebase/config'
-import {createUserWithEmailAndPassword} from "@firebase/auth";
-import { useAuthContext} from "./useAuthContext";
+import {useState} from "react";
+import {useAuthContext} from "./useAuthContext";
+
+import {auth, storage} from '../firebase/config'
+import {createUserWithEmailAndPassword, updateProfile} from "@firebase/auth";
+
+import {ref, uploadBytes, getDownloadURL} from "@firebase/storage";
+
 import Swal from "sweetalert2";
 
 export const useSignup = () => {
@@ -9,16 +13,34 @@ export const useSignup = () => {
     const {dispatch} = useAuthContext()
     
     
-    const signup = (email, password) => {
+    const signup = async (email, password, displayName, displayPhoto) => {
         setError(null);
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                Swal.fire(`Welcome!` ,`Successfully signed up using ${userCredential.user.email}`, `success`);
-                setTimeout(() => {dispatch({type: 'LOGIN', payload: userCredential.user })}, 1500);
-        }).catch((error) => {
-            setError(error.message);
-            Swal.fire(`Oops!` ,error.message, `error`);
-        })
+        
+        try {
+    
+            await createUserWithEmailAndPassword(auth, email, password)
+    
+            const uploadPath = `displayPhotos/${auth.currentUser.uid}/${displayPhoto.name}`;
+            
+            const displayPhotoRef = ref(storage, uploadPath);
+            const displayPhotoURL = getDownloadURL(displayPhotoRef);
+    
+            await updateProfile(auth.currentUser, {displayName, displayPhotoURL})
+            await Swal.fire(`Welcome!`, `Successfully signed up using ${auth.currentUser.email}`, `success`);
+            
+            console.log(auth.currentUser)
+    
+            setTimeout(() => {
+                dispatch({type: 'LOGIN', payload: auth.currentUser})
+            }, 1500);
+            
+        } catch (error) {
+            if (error) {
+                setError(error.message);
+                await Swal.fire(`Oops!`, error.message, `error`);
+            }
+        }
+
     }
-    return { error, signup }
+    return {error, signup}
 }

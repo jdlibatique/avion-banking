@@ -37,7 +37,7 @@ function LoginForm({}) {
                         <input type="password" name='password' id='password' onChange={e => setPassword(e.target.value)}/>
                     </div>
                     <button type="submit">Login</button>
-                    <button onClick={signUpHandler}>Sign Up</button>
+                    <button onClick={() =>navigate("/SignupForm")}>Sign Up</button>
                 </div>
             </form>
         </>
