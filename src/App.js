@@ -7,7 +7,7 @@ import Confirmation from './Pages/Confirmation/Confirmation';
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import LoginForm from "./Pages/LoginForm/LoginForm";
 import {useAuthContext} from "./hooks/useAuthContext";
-import SignupForm from "./components/SignupForm";
+import SignupForm from "./Pages/SignupPage/SignupForm";
 import ManageAccount from "./Pages/ManageAccounts/ManageAccount";
 import SearchAccount from "./Pages/SearchAccount/SearchAccount";
 
