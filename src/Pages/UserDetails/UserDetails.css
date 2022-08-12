@@ -39,3 +39,8 @@
     margin-top: 10px;
     align-items: center;
 }
+
+.manage-accounts-photo {
+    width: 4rem;
+    border-radius: 1rem;
+}

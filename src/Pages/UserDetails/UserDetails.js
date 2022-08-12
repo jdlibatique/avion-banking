@@ -8,13 +8,17 @@ function UserDetails(accounts) {
                 {accounts.map((account) => (
                     <div className='details' key={account.id}>
                         <ul className='top'>
-                            <li>Account #: {account.accountNumber}</li>
-                            <li>Balance</li>
-                        </ul>
-                        <ul className='bottom'>
+                            <img src={account.displayPhotoURL} className={"manage-accounts-photo"} alt=""/>
                             <li>{account.displayName}</li>
-                            <li>{account.balance}</li>
+                            <div>
+                                <li>Account #: {account.accountNumber}</li>
+                                <li>Balance {account.balance}</li>
+                            </div>
+
                         </ul>
+                        {/*<ul className='bottom'>*/}
+                        
+                        {/*</ul>*/}
                     </div>
                 ))}
             </div>

@@ -34,16 +34,7 @@ export const useSignup = () => {
     const signup = async (email, password, displayName, displayPhoto, balance) => {
         setError(null);
         setIsPending(true);
-        
-        // const queryRef = collection(db, 'users');
-        // const lastAccountNumberQuery = await query(queryRef, orderBy("accountNumber", "desc"), limit(1));
-        // const lastAccountNumber = await getDocs(lastAccountNumberQuery);
-        
-        // const orderedAccounts = await getDocs(db.collection("users").orderBy("createdAt", "desc"));
-        
-        
-        // console.log("Last account number", lastAccountNumberQuery.accountNumber);
-        
+
         try {
             const userCred = await createUserWithEmailAndPassword(auth, email, password)
             
