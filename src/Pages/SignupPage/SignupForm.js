@@ -11,6 +11,7 @@ function SignupForm({}) {
     const [displayName, setDisplayName] = useState('');
     const [displayPhoto, setDisplayPhoto] = useState(null);
     const [displayPhotoError, setDisplayPhotoError] = useState(null);
+    
     const {error, signup} = useSignup();
     const navigate = useNavigate();
     

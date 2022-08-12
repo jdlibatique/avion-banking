@@ -35,6 +35,7 @@ function ManageAccount() {
     
     const addNewAccount = async (event) => {
         event.preventDefault();
+        console.log(accounts)
         console.log(accounts.length);
         let accountNumber = accounts.length + 1;
         console.log(accountNumber)
