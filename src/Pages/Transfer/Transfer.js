@@ -107,7 +107,6 @@ function Transfer() {
             balance: nextBalance
         })
             .then(() => {
-                // Swal.fire(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
                 console.log(`Withdrew from Account #${accountNumber1}`, `Current Balance in account: ${nextBalance}`, `success`)
             })
         
