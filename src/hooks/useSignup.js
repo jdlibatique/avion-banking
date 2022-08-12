@@ -8,13 +8,15 @@ import {createUserWithEmailAndPassword, updateProfile} from "@firebase/auth";
 import {ref, uploadBytes, getDownloadURL} from "@firebase/storage";
 
 import Swal from "sweetalert2";
-import {collection, doc, getDocs, serverTimestamp, setDoc} from "@firebase/firestore";
+import {collection, doc, getDocs, query, limit, orderBy, serverTimestamp, setDoc} from "@firebase/firestore";
+import {FindDocByField} from "./useFindDocByField";
 
 export const useSignup = () => {
     const [error, setError] = useState(null);
     const [isPending, setIsPending] = useState(false);
     const {dispatch} = useAuthContext()
     const [accounts, setAccounts] = useState([]);
+    const [latestAccountNumber, setLastAccountNumber] = useState(0);
     
     useEffect(() => {
         const ref = collection(db, 'users');
@@ -29,9 +31,18 @@ export const useSignup = () => {
     }, [])
     
     
-    const signup = async (email, password, displayName, displayPhoto) => {
+    const signup = async (email, password, displayName, displayPhoto, balance) => {
         setError(null);
         setIsPending(true);
+        
+        // const queryRef = collection(db, 'users');
+        // const lastAccountNumberQuery = await query(queryRef, orderBy("accountNumber", "desc"), limit(1));
+        // const lastAccountNumber = await getDocs(lastAccountNumberQuery);
+        
+        // const orderedAccounts = await getDocs(db.collection("users").orderBy("createdAt", "desc"));
+        
+        
+        // console.log("Last account number", lastAccountNumberQuery.accountNumber);
         
         try {
             const userCred = await createUserWithEmailAndPassword(auth, email, password)
@@ -53,24 +64,25 @@ export const useSignup = () => {
             const displayPhotoURL = await getDownloadURL(displayPhotoRef);
             
     
-            await updateProfile(userCred.user, {displayName, displayPhotoURL})
+            await updateProfile(userCred.user, {displayName, photoURL : displayPhotoURL})
             await Swal.fire(`Welcome!`, `Successfully signed up using ${userCred.user.email}`, `success`);
             
-            // await db("users").doc(userCred.user.uid).set({
-            //     accountNumber: accounts.length - 1,
-            //     displayName: displayName,
-            //     displayPhotoURL: displayPhotoURL,
-            //     balance: 0,
-            // })
+            const queriedAccountNumber = await FindDocByField("accountNumber", "users")
+            
+            // setLastAccountNumber(await useFindDocByField("accountNumber", "users"))
+            console.log(queriedAccountNumber)
+            
     
             await setDoc(doc(db, "users", `${userCred.user.uid}`), {
-                accountNumber: accounts.length,
+                accountNumber: queriedAccountNumber + 1,
                 displayName: displayName,
                 displayPhotoURL: displayPhotoURL,
-                balance: 0,
+                balance: balance,
+                createdAt: serverTimestamp(),
             })
             
             console.log(auth.currentUser)
+            setIsPending(false);
     
             setTimeout(() => {
                 dispatch({type: 'LOGIN', payload: userCred.user})
@@ -82,7 +94,6 @@ export const useSignup = () => {
                 await Swal.fire(`Oops!`, error.message, `error`);
             }
         }
-
     }
-    return {error, signup}
+    return {error, signup, isPending}
 }

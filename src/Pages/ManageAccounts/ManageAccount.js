@@ -8,6 +8,8 @@ import {setDoc, collection, getDocs, serverTimestamp, doc, addDoc, getDoc} from 
 import {useLogout} from "../../hooks/useLogout";
 import Swal from "sweetalert2";
 import UserDetails from "../UserDetails/UserDetails";
+import {FindDocByField} from "../../hooks/useFindDocByField";
+import {useSignup} from "../../hooks/useSignup";
 
 function ManageAccount() {
     
@@ -17,12 +19,15 @@ function ManageAccount() {
     const [openConfirmation, setOpenConfirmation] = useState(false);
     const [accounts, setAccounts] = useState([]);
     const [newAccount, setNewAccount] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [balance, setBalance] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState('');
+    const [displayName, setDisplayName] = useState("");
+    const [balance, setBalance] = useState(0);
+    const [displayPhoto, setDisplayPhoto] = useState(null)
+    const [displayPhotoError, setDisplayPhotoError] = useState(null)
     
     useEffect(() => {
-        const ref = collection(db, 'accounts');
+        const ref = collection(db, 'users');
 
         getDocs(ref).then((snapshot) => {
             let results = [];
@@ -33,12 +38,39 @@ function ManageAccount() {
         })
     }, [])
     
+    const handleFileChange = (evt) => {
+        setDisplayPhoto(null);
+        let selected = evt.target.files[0];
+        console.log(selected);
+        
+        if (!selected) {
+            setDisplayPhotoError("Please select a file for your display photo!")
+            return;
+        }
+        if ((!selected.type.includes('image'))) {
+            setDisplayPhotoError("Please select an image file! No audio files please!")
+            return;
+        }
+        if (selected.size > 100000) {
+            setDisplayPhotoError("Please select an image file less than 100KB");
+            return;
+        }
+        
+        setDisplayPhotoError(null);
+        setDisplayPhoto(selected);
+        console.log("Valid photo selected");
+    }
+    
+    const {signup, isPending, error} = useSignup();
+    
     const addNewAccount = async (event) => {
         event.preventDefault();
         console.log(accounts)
         console.log(accounts.length);
-        let accountNumber = accounts.length + 1;
+        
+        let accountNumber = await FindDocByField("accountNumber", "users") + 1;
         console.log(accountNumber)
+        
         if (parseInt(balance) <= 0) {
             Swal.fire("Oops!", "Initial balance must be a positive value!", "error");
             return;
@@ -46,14 +78,10 @@ function ManageAccount() {
             Swal.fire("Oops!", "Please enter a number value!", "error");
             return;
         }
-        await setDoc(doc(db, "accounts", `${accountNumber}`), {
-            firstName: firstName,
-            lastName: lastName,
-            balance: parseInt(balance),
-            createdOn: serverTimestamp()
-        }).then((doc) => {
-            Swal.fire("Created New Account", `Account ${accountNumber} created for ${firstName} ${lastName}!`, "success")
-            const ref = collection(db, 'accounts');
+        await signup(email, password, displayName, displayPhoto, balance)
+        .then((doc) => {
+            // Swal.fire("Created New Account", `Account ${accountNumber} created for ${displayName}!`, "success")
+            const ref = collection(db, 'users');
             getDocs(ref).then((snapshot) => {
                 let results = [];
                 snapshot.docs.forEach(doc => {
@@ -76,9 +104,12 @@ function ManageAccount() {
                 </div>
             </div>
                 <form className='manage-accounts-body' onSubmit={addNewAccount}>
-                    <input className='button-amount'  type="text" name="name" placeholder="First Name" onChange={e => setFirstName(e.target.value)}></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="Last Name" onChange={e => setLastName(e.target.value)}></input>
-                    <input className='button-amount'  type="text" name="name" placeholder="Initial Balance" onChange={e => setBalance(e.target.value)}></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Email" onChange={e => setEmail(e.target.value)} required></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Name" onChange={e => setDisplayName(e.target.value)} required></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Default Password" onChange={e => setPassword(e.target.value)} required></input>
+                    <input className='button-amount'  type="text" name="name" placeholder="Initial Balance" onChange={e => setBalance(parseInt(e.target.value))} required></input>
+                    <input type="file" name='displayPhoto' id='displayPhoto' onChange={handleFileChange} required/>
+                    {displayPhotoError && <div className={"error"}>{displayPhotoError}</div>}
                     <button className="button-create-user" type={'submit'}>Create User</button>
                 </form>
             <div>

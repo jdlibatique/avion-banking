@@ -12,12 +12,12 @@ function SignupForm({}) {
     const [displayPhoto, setDisplayPhoto] = useState(null);
     const [displayPhotoError, setDisplayPhotoError] = useState(null);
     
-    const {error, signup} = useSignup();
+    const {signup, isPending, error} = useSignup();
     const navigate = useNavigate();
     
     const submitHandler = e => {
         e.preventDefault();
-        signup(email, password, displayName, displayPhoto);
+        signup(email, password, displayName, displayPhoto, 0);
     }
     
     const handleFileChange = (evt) => {
@@ -67,7 +67,7 @@ function SignupForm({}) {
                         {displayPhotoError && <div className={"error"}>{displayPhotoError}</div>}
                     </div>
                     <button type="submit">Login</button>
-                    <button onClick={submitHandler}>Sign Up</button>
+                    {!isPending && <button onClick={submitHandler}>Sign Up</button>}
                     {error && <div className={"error"}>{error}</div>}
                 </div>
             </form>

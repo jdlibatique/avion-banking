@@ -11,6 +11,7 @@ import SignupForm from "./Pages/SignupPage/SignupForm";
 import ManageAccount from "./Pages/ManageAccounts/ManageAccount";
 import SearchAccount from "./Pages/SearchAccount/SearchAccount";
 import { auth } from "./firebase/config";
+import {Notes} from "./Pages/Notes/Notes";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                         <Route path='/ManageAccount' element={user ? <ManageAccount/> : <Navigate to="/" />}/>
                         <Route path='/SearchAccount' element={user ? <SearchAccount/> : <Navigate to="/" />}/>
                         <Route path='/Dashboard' element={user ? <SearchAccount/> : <Navigate to="/" />}/>
+                        <Route path='/Notes' element={user ? <Notes/> : <Navigate to="/" />}/>
                     </Routes>
                 </BrowserRouter>
             )}

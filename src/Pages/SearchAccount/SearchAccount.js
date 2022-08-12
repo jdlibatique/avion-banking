@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './SearchAccount.css'
-import { useNavigate } from 'react-router-dom'
-import UserResult from '../SearchAccount/UserResult/UserResult'
-import { useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import {useLogout} from "../../hooks/useLogout";
-import UserDetails from '../UserDetails/UserDetails'
+import {collection, getDoc, getDocs, limit, onSnapshot, orderBy, query} from "@firebase/firestore";
+import {db} from "../../firebase/config";
+import Swal from "sweetalert2";
 
 
 function SearchAccount() {
@@ -13,6 +13,25 @@ function SearchAccount() {
   const { logout } = useLogout();
 
   const [result, setResult] = useState(false);
+  
+  // const [lastAccountNumber, setLastAccountNumber] = useState();
+  
+  // const getLastAccountNumber = async () => {
+  //
+  //     const useFindDocByField = async (field) => {
+  //         const fieldQuery = query(collection(db, "users"), orderBy(field, "desc"), limit(1));
+  //         const fieldSnapshot = await getDocs(fieldQuery);
+  //         let snapshotObject;
+  //         fieldSnapshot.forEach((doc) => {
+  //             console.log(doc.id, " => ", doc.data());
+  //             snapshotObject = doc.data().accountNumber;
+  //         })
+  //         return snapshotObject;
+  //     }
+  //     console.log("Test")
+  //     console.log("Field snapshot", await useFindDocByField("createdAt"))
+  //
+  // }
 
   return (
     <div className='withdraw-container'>
@@ -25,9 +44,10 @@ function SearchAccount() {
         </div>
         <div className='search-body'>
             <input className='button-account' type="number" name="name" placeholder="Account #"></input>
-            <button className='button-search' onClick={() => {setResult(true)}}> Search <i className="fa-solid fa-magnifying-glass"></i> </button>
+            {/*<button className='button-search' onClick={() => {setResult(true)}}> Search <i className="fa-solid fa-magnifying-glass"></i> </button>*/}
+            {/*<button className='button-search' onClick={getLastAccountNumber}> Search <i className="fa-solid fa-magnifying-glass"></i> </button>*/}
         </div>
-         {result && <UserResult closeResult={setResult} />}
+         {/*{result && <UserResult closeResult={setResult} />}*/}
     </div>
   )
 }

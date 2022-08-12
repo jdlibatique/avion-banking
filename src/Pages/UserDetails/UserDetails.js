@@ -8,11 +8,11 @@ function UserDetails(accounts) {
                 {accounts.map((account) => (
                     <div className='details' key={account.id}>
                         <ul className='top'>
-                            <li>Account #: {account.id}</li>
+                            <li>Account #: {account.accountNumber}</li>
                             <li>Balance</li>
                         </ul>
                         <ul className='bottom'>
-                            <li>{account.firstName} {account.lastName}</li>
+                            <li>{account.displayName}</li>
                             <li>{account.balance}</li>
                         </ul>
                     </div>
