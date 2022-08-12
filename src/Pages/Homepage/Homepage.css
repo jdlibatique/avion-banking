@@ -3,11 +3,9 @@ body {
     padding: 0;
     margin: 0;
     /* background-color: #4b5057; */
-    /* background-color: #E2DCC8; */
+    background-color: #E2DCC8;
     /* background: rgb(15,61,62);
     background: linear-gradient(90deg, rgba(15,61,62,1) 0%, rgba(226,220,200,1) 50%, rgba(15,61,62,1) 100%); */
-    background: rgb(65,125,122);
-    background: linear-gradient(90deg, rgba(65,125,122,1) 0%, rgba(226,220,200,1) 50%, rgba(65,125,122,1) 100%);
     color: white;
 }
 

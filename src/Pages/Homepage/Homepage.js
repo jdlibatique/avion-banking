@@ -40,7 +40,7 @@ export default function Homepage() {
 
             <div className='top-container'>
               <div className='hello-user'></div>
-              <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
+              <div className='second-blank'> <br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hello, {loggedInUser}!</div>
           <section className="first-blank">
               <div className='calendar-container'>
                  <Calendar onChange={setDate} value={date} />
