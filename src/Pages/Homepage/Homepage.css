@@ -3,7 +3,11 @@ body {
     padding: 0;
     margin: 0;
     /* background-color: #4b5057; */
-    background-color: #E2DCC8;
+    /* background-color: #E2DCC8; */
+    /* background: rgb(15,61,62);
+    background: linear-gradient(90deg, rgba(15,61,62,1) 0%, rgba(226,220,200,1) 50%, rgba(15,61,62,1) 100%); */
+    background: rgb(65,125,122);
+    background: linear-gradient(90deg, rgba(65,125,122,1) 0%, rgba(226,220,200,1) 50%, rgba(65,125,122,1) 100%);
     color: white;
 }
 
@@ -12,6 +16,7 @@ body {
     justify-content: space-between;
     /* background-color: #06113C; */
     background-color: #0F3D3E;
+    border-bottom: 2px solid white;
 }
 
 .head-container span {
@@ -137,6 +142,7 @@ body {
     background-image: url('../../../public/images/bankpic.jpg');
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     font-family: 'Roboto Slab', serif;
+    border: 1px solid white;
     
 }
  
@@ -173,12 +179,13 @@ body {
 
 .react-calendar {
     width: 370px;
-    background:#96a682;
+    background:#0F3D3E;
     border: 1px solid #a0a096;
     font-family: 'Roboto Slab', serif;
     height: 200px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 5px;
+    border: 1px solid white;
   }
 
   .react-calendar--doubleView {
@@ -204,6 +211,7 @@ body {
     margin: 0;
     border: 0;
     outline: none;
+    color: white;
   }
   .react-calendar button:enabled:hover {
     cursor: pointer;
@@ -275,7 +283,7 @@ body {
     background-color: #e6e6e6;
   }
   .react-calendar__tile--now {
-    background: #ffff76;
+    background: #1e7b7d ;
   }
   .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {
